@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Boxmodule.css";
+import "./Menu.css";
 import PropTypes from "prop-types";
 import Section1 from "./Section1";
 import Button from "@material-ui/core/Button";

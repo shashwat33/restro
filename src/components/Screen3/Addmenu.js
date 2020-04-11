@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Top } from "./Top";
-import "./Design1.css";
+import "./Addmenu.css";
 import TextBox from "./TextBox";
 import Bottom from "./Bottom";
 
