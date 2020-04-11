@@ -1,0 +1,17 @@
+.top {
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  font-variant: normal;
+  font-size: 100%;
+  font-weight: bold;
+  position: "absolute";
+  height: auto;
+  width: 95%;
+  margin: 2%;
+  margin-left: 6%;
+  align-content: center;
+}
+.icon {
+  display: flex;
+  align-content: center;
+}
