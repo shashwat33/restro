@@ -4,13 +4,13 @@ import "./index.css";
 import App from "./App";
 //import Menu from "./components/Screen1/Menu";
 // import Order from "./components/Screen2/Order";
-import Addmenu from "./components/Screen3/Addmenu";
+//import Addmenu from "./components/Screen3/Addmenu";
 
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Addmenu />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
