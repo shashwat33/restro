@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import Menu from "./components/Screen1/Menu";
+//import Menu from "./components/Screen1/Menu";
 //import Order from "./components/Screen2/Order";
 //import Addmenu from "./components/Screen3/Addmenu";
 //import Menuitem from "./components/Screen11/Menuitem";
@@ -12,7 +12,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Menu />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
