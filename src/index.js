@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 // import Restaurantname from "./components/Restaurantname";
 // import Profilebasicedit from "./components/Profilebasicedit";
 // import HomeEmpty from "./components/HomeEmpty";
-//import Dialougebox from "./components/Dialougebox";
+// import Dialougebox from "./components/Dialougebox";
 // import Searchbar from "./components/Searchbar";
 // import Firebaselogin from "./components/Firebaselogin";
 // import LoginPage from "./components/Screen4/LoginPage";

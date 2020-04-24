@@ -6,7 +6,7 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-
+import { Link } from "react-router-dom";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -40,6 +40,7 @@ export class Profilebasicedit extends Component {
           }}
           titlePosition="top"
           actionIcon={
+            // <Link to="" style={{ textDecoration: "none" }}>
             <IconButton
               style={{
                 color: "#ff1744",
@@ -48,6 +49,7 @@ export class Profilebasicedit extends Component {
             >
               <ArrowBackIcon />
             </IconButton>
+            // </Link>
           }
           actionPosition="left"
         />

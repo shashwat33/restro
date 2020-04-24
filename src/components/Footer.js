@@ -65,6 +65,7 @@ export class Footer extends Component {
     const { value } = this.state;
     return (
       <div>
+        <Dialougebox />
         <MuiThemeProvider theme={theme}>
           <BottomNavigation
             value={value}
