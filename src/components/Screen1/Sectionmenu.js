@@ -16,7 +16,6 @@ const styles = (theme) => ({
   root: {
     margin: "0",
     left: "0",
-
     backgroundColor: theme.palette.background.paper,
   },
 
@@ -50,7 +49,7 @@ class SelectedListItem extends React.Component {
               <img src="ff.png" width="60" height="50" />
             </ListItemIcon>
             <ListItemText
-              style={{ marginLeft: "15%" }}
+              style={{ marginLeft: "15%", fontFamily: "Big Caslon FB" }}
               primary="onion paratha"
             />
             <ListItemSecondaryAction>

@@ -22,6 +22,7 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    fontfamily: "Big Caslon FB",
   },
 });
 
@@ -47,6 +48,7 @@ class SimpleTabs extends React.Component {
             color: "black",
             textAlign: "center",
             fontWeight: "bold",
+            fontfamily: "Big Caslon FB",
           }}
         >
           <Tabs value={value} onChange={this.handleChange} centered={true}>

@@ -36,7 +36,11 @@ export class Top extends Component {
             position: "sticky",
           }}
           margin="1%"
-          actionIcon={<h1 style={{ marginLeft: 7 }}>Edit Menu</h1>}
+          actionIcon={
+            <h1 style={{ marginLeft: 7, fontFamily: "Big Caslon FB" }}>
+              Edit Menu
+            </h1>
+          }
           actionPosition="left"
         />
       </MuiThemeProvider>

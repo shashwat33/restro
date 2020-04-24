@@ -31,6 +31,7 @@ const styles = (theme) => ({
     flexGrow: 1,
     margin: 0,
     backgroundColor: theme.palette.background.paper,
+    fontFamily: "Big Caslon FB",
   },
 });
 
@@ -57,7 +58,12 @@ class SimpleTabs extends React.Component {
             textAlign: "center",
           }}
         >
-          <Tabs value={value} onChange={this.handleChange} centered={true}>
+          <Tabs
+            value={value}
+            onChange={this.handleChange}
+            centered={true}
+            style={{ fontFamily: "Big Caslon FB" }}
+          >
             <Tab label="Basic" />
             <Tab label="Menu" />
             <Tab label="Table" />
@@ -65,7 +71,9 @@ class SimpleTabs extends React.Component {
         </AppBar>
         {value === 0 && (
           <TabContainer1 style={{ padding: 7 * 5 }}>
-            village cafe,shankr nagar raipur phone no. 9304786790.
+            <span style={{ fontFamily: "Big Caslon FB" }}>
+              village cafe,shankr nagar raipur phone no. 9304786790.
+            </span>
           </TabContainer1>
         )}
         {value === 1 && (
