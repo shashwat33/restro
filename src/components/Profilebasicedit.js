@@ -53,7 +53,13 @@ export class Profilebasicedit extends Component {
         />
         <MuiThemeProvider theme={theme}>
           <div style={{ textAlign: "center", marginTop: "5%" }}>
-            <span style={{ marginRight: "30%", fontSize: "32px" }}>
+            <span
+              style={{
+                marginRight: "30%",
+                fontSize: "32px",
+                fontFamily: "Big Caslon FB",
+              }}
+            >
               Edit Details
             </span>
             <TextField

@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { Link } from "react-router-dom";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -43,6 +44,7 @@ export class Restaurantname extends Component {
                   textAlign: "center",
                   fontWeight: "normal",
                   fontSize: "35px",
+                  fontFamily: "Big Caslon FB",
                 }}
               >
                 Hello Restaurant
@@ -53,6 +55,7 @@ export class Restaurantname extends Component {
                   alignItems: "center",
                   width: "70%",
                   overflowX: "hidden",
+                  fontFamily: "Big Caslon FB",
                 }}
               >
                 Can you tell me the name of your Restaurant?
@@ -81,14 +84,15 @@ export class Restaurantname extends Component {
                 style: { borderRadius: "20px", borderColor: "#E91E63" },
               }}
             />
-
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-            >
-              Done
-            </Button>
+            <Link to="/Footer" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                Done
+              </Button>
+            </Link>
           </div>
           <h6
             style={{
@@ -100,6 +104,7 @@ export class Restaurantname extends Component {
               marginRight: "auto",
               left: "0",
               right: "0",
+              fontFamily: "Big Caslon FB",
             }}
           >
             Please Complete Setup

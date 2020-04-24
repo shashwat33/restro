@@ -8,6 +8,9 @@ import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
 import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import Profilebasicedit from "./Profilebasicedit";
+import HomeEmpty from "./HomeEmpty";
+import Dialougebox from "./Dialougebox";
 // import image from "..images/image.png";
 const theme = createMuiTheme({
   palette: {
@@ -36,7 +39,19 @@ const styles = {
   },
 };
 
-export class HomeEmpty extends Component {
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export class Footer extends Component {
   state = {
     value: 0,
   };
@@ -44,43 +59,13 @@ export class HomeEmpty extends Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
     return (
       <div>
-        <span
-          style={{
-            position: "absolute",
-            top: "10%",
-            left: "3%",
-            fontSize: "28px",
-            fontWeight: "bold",
-            fontFamily: "Big Caslon FB",
-          }}
-        >
-          order request
-        </span>
-        <div style={{ textAlign: "center", marginTop: "50%" }}>
-          <img src="image.png" alt="" />
-          <div>
-            <span
-              /*style={{
-                position: "absolute",
-                marginLeft: "auto",
-                marginRight: "auto",
-                left: "0",
-                right: "0",
-                bottom: "35%",
-                color: "#E91E63",
-              }}*/
-              style={{ color: "#E91E63", fontFamily: "Big Caslon FB" }}
-            >
-              Oops...There are no request{" "}
-            </span>
-          </div>
-        </div>
-        {/* <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
           <BottomNavigation
             value={value}
             onChange={this.handleChange}
@@ -94,13 +79,21 @@ export class HomeEmpty extends Component {
               icon={<SentimentSatisfiedOutlinedIcon />}
             />
           </BottomNavigation>
-        </MuiThemeProvider>  */}
+          {value === 0 && (
+            <TabContainer>
+              {" "}
+              <HomeEmpty />{" "}
+            </TabContainer>
+          )}
+          {value === 1 && <TabContainer>hello2</TabContainer>}
+          {value === 2 && <TabContainer> </TabContainer>}
+        </MuiThemeProvider>
       </div>
     );
   }
 }
-HomeEmpty.propTypes = {
+Footer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HomeEmpty);
+export default withStyles(styles)(Footer);
