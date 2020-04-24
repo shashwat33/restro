@@ -9,7 +9,9 @@ export class HomeSingleOrderReruest extends Component {
       <div>
         <TopArrow />
         <ButtonAcceptReject />
-        <MenuItemList />
+        <div>
+          <MenuItemList />
+        </div>
       </div>
     );
   }

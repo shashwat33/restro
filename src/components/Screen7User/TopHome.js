@@ -4,7 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { MuiThemeProvider } from "@material-ui/core";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 
-export class TopEditMenu extends Component {
+export class TopHome extends Component {
   render() {
     return (
       <MuiThemeProvider>
@@ -18,7 +18,7 @@ export class TopEditMenu extends Component {
           actionIcon={
             <IconButton
               style={{
-                color: "#ff7043",
+                color: "#f06292",
                 position: "sticky",
               }}
             >
@@ -33,8 +33,8 @@ export class TopEditMenu extends Component {
             position: "sticky",
           }}
           actionIcon={
-            <h1 style={{ marginLeft: 7, fontFamily: "Big Caslon FB" }}>
-              Add Menu
+            <h1 style={{ marginLeft: "18%", fontFamily: "Big Caslon FB" }}>
+              Items
             </h1>
           }
           actionPosition="left"

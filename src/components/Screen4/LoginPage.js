@@ -8,10 +8,10 @@ import img from "./img.jpg";
 import log from "./log.jpg";
 import ListItemText from "@material-ui/core/ListItemText";
 import Fab from "@material-ui/core/Fab";
+import FirebaseLogin from "../../Firebase/FirebaseLogin";
 const styles = (theme) => ({
   margin: {
     marginTop: "3%",
-
     borderRadius: "30%",
   },
 
@@ -32,7 +32,7 @@ export class LoginPage extends Component {
                 color: "white",
                 position: "absolute",
                 fontSize: "65px",
-                bottom: "45%",
+                bottom: "48%",
                 //fontWeight: "bold",
               }}
             >
@@ -55,25 +55,14 @@ export class LoginPage extends Component {
               secondary=" Login to your account"
             />
             <Grid container justify="center">
-              <Fab
-                variant="extended"
-                size="medium"
+              <FirebaseLogin
                 style={{
                   width: "43%",
                   position: "absolute",
                   marginTop: "10%",
                   borderRadius: "30%",
                 }}
-              >
-                <img
-                  src={log}
-                  style={{
-                    marginTop: "-5%",
-                    width: "200%",
-                    height: "10%",
-                  }}
-                />
-              </Fab>
+              />
             </Grid>
           </div>
         </div>

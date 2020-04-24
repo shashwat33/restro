@@ -30,6 +30,7 @@ export default class TopArrow extends Component {
         />
         <UserIdentity />
         <GridListTileBar
+          position="fixed"
           style={{
             backgroundColor: "transparent",
             position: "sticky",

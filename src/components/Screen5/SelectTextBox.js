@@ -74,15 +74,15 @@ const styles = (theme) => ({
 
   textField: {
     color: theme.palette.text.primary,
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: 5,
+    marginRight: 5,
     marginTop: "4%",
     width: "48%",
   },
   textField1: {
     color: theme.palette.text.primary,
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: 5,
+    marginRight: 5,
     marginTop: "3%",
   },
   icon: {
@@ -176,10 +176,9 @@ export class SelectTextBox extends Component {
             </Select>
           </FormControl>
           <TextField
-            label="Name"
             fullWidth={true}
-            id="outlined-error"
             className={classes.textField1}
+            placeholder="Name"
             margin="dense"
             variant="outlined"
             InputProps={{
@@ -198,8 +197,7 @@ export class SelectTextBox extends Component {
           <span>
             <TextField
               color="primary"
-              id="outlined-error"
-              label="price"
+              placeholder="price"
               className={classes.textField}
               margin="dense"
               variant="outlined"

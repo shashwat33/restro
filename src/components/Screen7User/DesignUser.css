@@ -1,13 +1,13 @@
-.top {
+.user {
   color: black;
   font-family: "Big Caslon FB";
   font-variant: normal;
   font-size: 100%;
   font-weight: bold;
   position: "absolute";
-  height: auto;
+  height: 150%;
   width: 95%;
   margin: 2%;
-  margin-left: 6%;
+  margin-left: 5%;
   align-content: center;
 }

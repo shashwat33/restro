@@ -8,12 +8,9 @@ export class EditMenu extends Component {
   render() {
     return (
       <div className="top">
-        <div>
-          <TopEditMenu />
-        </div>
-        <div>
-          <SelectTextBox />
-        </div>
+        <TopEditMenu />
+
+        <SelectTextBox />
 
         <BottomButton />
       </div>
