@@ -8,6 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import Divider from "@material-ui/core/Divider";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 const styles = (theme) => ({
   shash: {
     "div > div": { borderRadius: "30%", backgroundColor: "red" },
@@ -16,7 +17,7 @@ const styles = (theme) => ({
 
 export class Dialougebox extends Component {
   state = {
-    open: false,
+    open: true,
   };
 
   handleClickOpen = () => {
@@ -26,17 +27,18 @@ export class Dialougebox extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Button
+        {/* <Button
           variant="outlined"
           color="primary"
           onClick={this.handleClickOpen}
         >
           Open alert dialog
-        </Button>
+        </Button> */}
 
         <Dialog
           ref={(e) => {
@@ -62,13 +64,15 @@ export class Dialougebox extends Component {
           <Divider />{" "}
           <Grid container justify="center">
             <DialogActions style={{ padding: "0" }}>
-              <Button
-                onClick={this.handleClose}
-                color="secondary"
-                style={{ left: " -15px" }}
-              >
-                Ok
-              </Button>
+              <Link to="/Profilebasicedit" style={{ textDecoration: "none" }}>
+                <Button
+                  onClick={this.handleClose}
+                  color="secondary"
+                  style={{ left: " -15px" }}
+                >
+                  Ok
+                </Button>
+              </Link>
               <Divider
                 orientation="vertical"
                 variant="middle"
@@ -79,7 +83,7 @@ export class Dialougebox extends Component {
                 onClick={this.handleClose}
                 color="secondary"
                 style={{ right: "-15px" }}
-                autoFocus
+                // autoFocus
               >
                 Later
               </Button>
