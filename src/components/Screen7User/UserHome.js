@@ -9,7 +9,7 @@ export class UserHome extends Component {
       <div className="user" style={{ fontFamily: "Big Caslon FB" }}>
         <TopHome />
         <ItemDetail />
-        {/* <BottomPay /> */}
+        <BottomPay />
       </div>
     );
   }
