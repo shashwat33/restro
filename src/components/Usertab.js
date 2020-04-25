@@ -5,8 +5,15 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import UserList from "./UserList";
-
+let theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#c62828",
+    },
+  },
+});
 function TabContainer(props) {
   return <Typography component="div">{props.children}</Typography>;
 }
@@ -37,8 +44,9 @@ class Usertab extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
-        {/* <AppBar
+      <MuiThemeProvider theme={theme}>
+        <div className={classes.root}>
+          {/* <AppBar
           position="static"
           style={{
             backgroundColor: "white",
@@ -46,35 +54,36 @@ class Usertab extends React.Component {
             textAlign: "center",
           }}
         > */}
-        <Tabs value={value} onChange={this.handleChange}>
-          <Tab
-            label="Discover"
-            style={{
-              textTransform: "capitalize",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}
-          />
-          <Tab
-            label="Near You"
-            style={{
-              textTransform: "capitalize",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}
-          />
-        </Tabs>
-        {/* </AppBar> */}
+          <Tabs value={value} onChange={this.handleChange}>
+            <Tab
+              label="Discover"
+              style={{
+                textTransform: "capitalize",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            />
+            <Tab
+              label="Near You"
+              style={{
+                textTransform: "capitalize",
+                fontSize: "20px",
+                fontWeight: "bold",
+              }}
+            />
+          </Tabs>
+          {/* </AppBar> */}
 
-        {value === 0 && (
-          <div style={{ overflowY: "auto", height: "calc(100vh - 118px)" }}>
-            <TabContainer margin="0%">
-              <UserList />
-            </TabContainer>
-          </div>
-        )}
-        {value === 1 && <TabContainer></TabContainer>}
-      </div>
+          {value === 0 && (
+            <div style={{ overflowY: "auto", height: "calc(100vh - 205px)" }}>
+              <TabContainer margin="0%">
+                <UserList />
+              </TabContainer>
+            </div>
+          )}
+          {value === 1 && <TabContainer></TabContainer>}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

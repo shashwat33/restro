@@ -20,6 +20,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Increase from "./Increase";
 import Addbutton from "./Addbutton";
+import { Link } from "react-router-dom";
 
 let theme = createMuiTheme({
   palette: {
@@ -60,16 +61,18 @@ class Menuitem extends React.Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div className={classes.root}>
+        <div className={classes.root} style={{ height: "60%" }}>
           <GridListTileBar
             style={{
               backgroundColor: "transparent",
             }}
             titlePosition="top"
             actionIcon={
-              <IconButton style={{ top: "40" }}>
-                <ArrowBackIcon color="Primary" />
-              </IconButton>
+              <Link to="/Footeruser" style={{ textDecoration: "none" }}>
+                <IconButton style={{ top: "40" }}>
+                  <ArrowBackIcon color="Primary" />
+                </IconButton>
+              </Link>
             }
             actionPosition="left"
           />
@@ -110,17 +113,17 @@ class Menuitem extends React.Component {
           </List>
           <Divider />
         </div>
-        <div>
-          <GridListTileBar
-            style={{
-              backgroundColor: "transparent",
-              position: "sticky",
-            }}
-            margin="1%"
-            actionIcon={<h2 style={{ marginLeft: 9 }}>Menu Items</h2>}
-            actionPosition="left"
-          />
 
+        <GridListTileBar
+          style={{
+            backgroundColor: "transparent",
+            position: "sticky",
+          }}
+          margin="1%"
+          actionIcon={<h2 style={{ marginLeft: 9 }}>Menu Items</h2>}
+          actionPosition="left"
+        />
+        <div style={{ overflowY: "auto", height: "calc(100vh - 240px)" }}>
           <List component="nav">
             <ListItem
               fullWidth={true}
@@ -139,6 +142,63 @@ class Menuitem extends React.Component {
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
                   <Increase />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem
+              button
+              selected={this.state.selectedIndex === 2}
+              onClick={(event) => this.handleListItemClick(event, 2)}
+            >
+              <ListItemIcon>
+                <img src="ff.png" width="60" height="50" />
+              </ListItemIcon>
+              <ListItemText
+                style={{ marginLeft: "15%" }}
+                primary="onion paratha"
+                secondary="₹112"
+              />
+              <ListItemSecondaryAction>
+                <IconButton aria-label="Delete">
+                  <Addbutton />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem
+              button
+              selected={this.state.selectedIndex === 2}
+              onClick={(event) => this.handleListItemClick(event, 2)}
+            >
+              <ListItemIcon>
+                <img src="ff.png" width="60" height="50" />
+              </ListItemIcon>
+              <ListItemText
+                style={{ marginLeft: "15%" }}
+                primary="onion paratha"
+                secondary="₹112"
+              />
+              <ListItemSecondaryAction>
+                <IconButton aria-label="Delete">
+                  <Addbutton />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem
+              button
+              selected={this.state.selectedIndex === 2}
+              onClick={(event) => this.handleListItemClick(event, 2)}
+            >
+              <ListItemIcon>
+                <img src="ff.png" width="60" height="50" />
+              </ListItemIcon>
+              <ListItemText
+                style={{ marginLeft: "15%" }}
+                primary="onion paratha"
+                secondary="₹112"
+              />
+              <ListItemSecondaryAction>
+                <IconButton aria-label="Delete">
+                  <Addbutton />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
@@ -206,6 +266,12 @@ class Menuitem extends React.Component {
 
         <GridListTileBar
           style={{
+            position: "fixed",
+            zIndex: "999",
+            bottom: "0",
+            height: "25px",
+            width: "100%",
+            left: "0",
             backgroundColor: "transparent",
           }}
           titlePosition="bottom"
@@ -222,12 +288,14 @@ class Menuitem extends React.Component {
             </Typography>
           }
           actionIcon={
-            <IconButton color="secondary">
-              <h6 style={{ marginRight: "5%", fontWeight: "normal" }}>
-                Confirm
-              </h6>
-              <ArrowForwardIcon />
-            </IconButton>
+            <Link to="/userhome" style={{ textDecoration: "none" }}>
+              <IconButton color="secondary">
+                <h6 style={{ marginRight: "5%", fontWeight: "normal" }}>
+                  Confirm
+                </h6>
+                <ArrowForwardIcon />
+              </IconButton>
+            </Link>
           }
           actionPosition="Right"
         ></GridListTileBar>

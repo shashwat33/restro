@@ -57,32 +57,43 @@ class Profile extends Component {
           />
           <Button className={classes.button}>edit</Button>
           <div className="loginedit">
-            <div
+            {/* <div
               style={{
                 marginTop: 50,
                 textAlign: "left",
                 marginLeft: 20,
               }}
-            >
-              <ListItemText
-                style={{ marginLeft: "1%" }}
-                primary="Anju bisen"
-                secondary={
-                  <React.Fragment>
-                    <Typography variant="body2">anju@gmail.com</Typography>
-                    {" phone no."}
-                  </React.Fragment>
-                }
-              />
+            > */}
+            <ListItemText
+              style={{ position: "absolute", left: "15px", top: "15%" }}
+              primary="Anju bisen"
+              secondary={
+                <React.Fragment>
+                  <Typography variant="body2">anju@gmail.com</Typography>
+                  {" phone no."}
+                </React.Fragment>
+              }
+            />
 
-              <img src="d.png" class="icon1" />
-              <br></br>
-              <div className="sss">
-                <Button className={classes.button2} font-variant="normal">
-                  edit profile
-                </Button>
-              </div>
-            </div>
+            <img src="d.png" class="icon1" />
+            <br></br>
+
+            <Button
+              className={classes.button2}
+              font-variant="normal"
+              style={{
+                position: "fixed",
+                zIndex: "999",
+                bottom: "50px",
+                height: "25px",
+                width: "100%",
+                left: "0",
+                backgroundColor: "transparent",
+              }}
+            >
+              edit profile
+            </Button>
+            {/* </div> */}
           </div>
         </div>
       </MuiThemeProvider>
