@@ -4,6 +4,11 @@ import Usertype from "./components/Usertype";
 import Restaurantname from "./components/Restaurantname";
 import Footer from "./components/Footer";
 import Profilebasicedit from "./components/Profilebasicedit";
+import LoginPage from "./components/Screen4/LoginPage";
+import UserHome from "./components/Screen7User/UserHome";
+import UserOrder from "./components/Screen8User/UserOrder";
+import HomeSingleOrderRequest from "./components/Screen6/HomeSingleOrderReruest";
+import EditMenu from "./components/Screen5/EditMenu";
 
 export class App extends Component {
   render() {
@@ -20,6 +25,20 @@ export class App extends Component {
             path="/Profilebasicedit"
             render={(props) => <Profilebasicedit {...props} />}
           />
+          {/* <Route
+            path="/userorder"
+            render={(props) => <UserOrder {...props} />}
+          /> */}
+          <Route
+            path="/loginpage"
+            render={(props) => <LoginPage {...props} />}
+          />
+          <Route
+            path="/homesingleorderrequest"
+            render={(props) => <HomeSingleOrderRequest {...props} />}
+          />
+          {/* <Route path="/userhome" render={(props) => <UserHome {...props} />} /> */}
+          <Route path="/editmenu" render={(props) => <EditMenu {...props} />} />
         </div>
       </BrowserRouter>
     );

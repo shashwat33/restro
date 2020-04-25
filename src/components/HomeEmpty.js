@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
@@ -8,6 +8,11 @@ import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
 import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Avatar from "@material-ui/core/Avatar";
+import User from "./Screen6/User.jpg";
 // import image from "..images/image.png";
 const theme = createMuiTheme({
   palette: {
@@ -78,6 +83,35 @@ export class HomeEmpty extends Component {
             >
               Oops...There are no request{" "}
             </span>
+          </div>
+          <div>
+            {/* <List>
+              <ListItem>
+                <Avatar
+                  style={{
+                    position: "absolute",
+                    padding: "2%",
+                    alignContent: "left",
+                  }}
+                >
+                  <img src={User} style={{ position: "absolute" }} />
+                </Avatar>
+                <ListItemText
+                  style={{ marginLeft: "22%", marginTop: "3%" }}
+                  primary="Anju Bisen"
+                  secondary={
+                    <React.Fragment>
+                      {" Table no. 21"}
+                      <Typography
+                        style={{ color: "#E91E63", fontSize: "100%" }}
+                      >
+                        05:00-07:00 25 April
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            </List> */}
           </div>
         </div>
         {/* <MuiThemeProvider theme={theme}>
