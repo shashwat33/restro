@@ -22,6 +22,7 @@ export class App extends Component {
           <Route
             path="/Profilebasicedit"
             render={(props) => <Profilebasicedit {...props} />}
+
           />
           <Route
             path="/Footeruser"
@@ -34,6 +35,7 @@ export class App extends Component {
             path="/userorder"
             render={(props) => <UserOrder {...props} />}
           />
+
         </div>
       </BrowserRouter>
     );

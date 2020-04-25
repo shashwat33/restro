@@ -6,12 +6,14 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
 import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { MuiThemeProvider, createMuiTheme, MenuItem } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Profilebasicedit from "./Profilebasicedit";
 import HomeEmpty from "./HomeEmpty";
 import Dialougebox from "./Dialougebox";
 // import image from "..images/image.png";
+import Order from "./Screen2/Order";
+import Menu from "./Screen1/Menu";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -40,11 +42,7 @@ const styles = {
 };
 
 function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
+  return <Typography component="div">{props.children}</Typography>;
 }
 
 TabContainer.propTypes = {
@@ -86,8 +84,16 @@ export class Footer extends Component {
               <HomeEmpty />{" "}
             </TabContainer>
           )}
-          {value === 1 && <TabContainer>hello2</TabContainer>}
-          {value === 2 && <TabContainer> </TabContainer>}
+          {value === 1 && (
+            <TabContainer>
+              <Order />
+            </TabContainer>
+          )}
+          {value === 2 && (
+            <TabContainer>
+              <Menu />
+            </TabContainer>
+          )}
         </MuiThemeProvider>
       </div>
     );

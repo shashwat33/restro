@@ -27,11 +27,6 @@ const styles = (theme) => ({
     right: "0",
     top: "33%",
   },
-  button2: {
-    margin: theme.spacing.unit,
-    color: "#c62828",
-    bottom: 0,
-  },
 });
 
 class Menu extends Component {
@@ -62,12 +57,6 @@ class Menu extends Component {
               <br></br>
               <div className="ss">
                 <Section1 />
-                <Button
-                  className={classes.button2}
-                  style={{ fontVariant: "normal", fontFamily: "Big Caslon FB" }}
-                >
-                  add menu
-                </Button>
               </div>
             </div>
           </div>
