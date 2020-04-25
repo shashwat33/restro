@@ -19,6 +19,7 @@ export class App extends Component {
           <Route
             path="/Profilebasicedit"
             render={(props) => <Profilebasicedit {...props} />}
+            />
         </div>
       </BrowserRouter>
     );
