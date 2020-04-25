@@ -62,127 +62,129 @@ export class ItemDetails extends Component {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
-        <List>
-          <ListItem>
-            <img
-              src={FoodImage}
-              style={{
-                position: "absolute",
-                padding: "2%",
-                alignContent: "left",
-                borderRadius: "5%",
-                width: "19%",
-                height: "73%",
-                marginLeft: "-2%",
-              }}
-            />
-
-            <ListItemText
-              style={{ marginLeft: "31%", marginTop: "3%" }}
-              primary="Onion Paratha"
-              secondary="₹112"
-            />
-            <ListItemSecondaryAction>
-              <IncrementDecrement />
-            </ListItemSecondaryAction>
-          </ListItem>
-          <Divider variant="middle" />
-          <ListItem>
-            <ListItemText
-              style={{ marginTop: "3%" }}
-              primary={
-                <Typography style={{ color: "#f06292" }}>Table</Typography>
-              }
-              secondary="Available 5"
-            />
-            <ListItemSecondaryAction>
-              <IncrementDecrement />
-            </ListItemSecondaryAction>
-          </ListItem>
-          <ListItem style={{ marginTop: "-2%", color: "#f06292" }}>
-            <ListItemText primary="Time" />
-            <TextField
-              color="primary"
-              placeholder="from"
-              className={classes.textField}
-              margin="dense"
-              variant="outlined"
-              InputProps={{
-                inputProps: {
-                  style: {
-                    borderRadius: "25px",
-                    padding: "5px",
-                    color: "#E91E63",
-                    borderColor: "primary",
-                    border: "1px solid #f06292",
-                    textAlign: "center",
-                  },
-                },
-                style: { borderRadius: "20px", borderColor: "primary" },
-              }}
-            />
-            <TextField
-              color="primary"
-              placeholder="to"
-              className={classes.textField}
-              margin="dense"
-              variant="outlined"
-              InputProps={{
-                inputProps: {
-                  style: {
-                    borderRadius: "25px",
-                    padding: "5px",
-                    color: "#E91E63",
-                    borderColor: "primary",
-                    border: "1px solid #f06292",
-                    textAlign: "center",
-                  },
-                },
-                style: {
-                  borderRadius: "20px",
-                  borderColor: "primary",
-                  marginRight: "0%",
-                },
-              }}
-            />
-          </ListItem>
-          <Divider variant="middle" style={{ marginTop: "2%" }} />
-          <ListItem>
-            <ListItemText
-              style={{ marginTop: "3%", color: "#f06292" }}
-              primary="Item Total"
-            />
-            <ListItemSecondaryAction style={{ marginRight: "4%" }}>
-              <span style={{ color: "#f06292", fontSize: "90%" }}>₹112</span>
-            </ListItemSecondaryAction>
-          </ListItem>
-          <ListItem style={{ marginTop: "-4%" }}>
-            <ListItemText
-              style={{ color: "#f06292" }}
-              primary="Advance Charge"
-            />
-            <ListItemSecondaryAction style={{ marginRight: "4%" }}>
-              <span
+        <div style={{ overflowY: "auto", height: "calc(100vh - 146px)" }}>
+          <List>
+            <ListItem>
+              <img
+                src={FoodImage}
                 style={{
-                  color: "#f06292",
-                  fontSize: "90%",
+                  position: "absolute",
+                  padding: "2%",
+                  alignContent: "left",
+                  borderRadius: "5%",
+                  width: "19%",
+                  height: "73%",
+                  marginLeft: "-2%",
                 }}
-              >
-                ₹50
-              </span>
-            </ListItemSecondaryAction>
-          </ListItem>
-          <Divider variant="middle" />
-          <ListItem style={{ marginTop: "-2%" }}>
-            <ListItemText
-              style={{ marginTop: "3%", color: "#f06292" }}
-              primary="Grand Total"
-            />
-            <ListItemSecondaryAction style={{ marginRight: "4%" }}>
-              <span style={{ color: "#f06292", fontSize: "90%" }}>₹162</span>
-            </ListItemSecondaryAction>
-          </ListItem>
-        </List>{" "}
+              />
+
+              <ListItemText
+                style={{ marginLeft: "31%", marginTop: "3%" }}
+                primary="Onion Paratha"
+                secondary="₹112"
+              />
+              <ListItemSecondaryAction>
+                <IncrementDecrement />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider variant="middle" />
+            <ListItem>
+              <ListItemText
+                style={{ marginTop: "3%" }}
+                primary={
+                  <Typography style={{ color: "#f06292" }}>Table</Typography>
+                }
+                secondary="Available 5"
+              />
+              <ListItemSecondaryAction>
+                <IncrementDecrement />
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem style={{ marginTop: "-2%", color: "#f06292" }}>
+              <ListItemText primary="Time" />
+              <TextField
+                color="primary"
+                placeholder="from"
+                className={classes.textField}
+                margin="dense"
+                variant="outlined"
+                InputProps={{
+                  inputProps: {
+                    style: {
+                      borderRadius: "25px",
+                      padding: "5px",
+                      color: "#E91E63",
+                      borderColor: "primary",
+                      border: "1px solid #f06292",
+                      textAlign: "center",
+                    },
+                  },
+                  style: { borderRadius: "20px", borderColor: "primary" },
+                }}
+              />
+              <TextField
+                color="primary"
+                placeholder="to"
+                className={classes.textField}
+                margin="dense"
+                variant="outlined"
+                InputProps={{
+                  inputProps: {
+                    style: {
+                      borderRadius: "25px",
+                      padding: "5px",
+                      color: "#E91E63",
+                      borderColor: "primary",
+                      border: "1px solid #f06292",
+                      textAlign: "center",
+                    },
+                  },
+                  style: {
+                    borderRadius: "20px",
+                    borderColor: "primary",
+                    marginRight: "0%",
+                  },
+                }}
+              />
+            </ListItem>
+            <Divider variant="middle" style={{ marginTop: "2%" }} />
+            <ListItem>
+              <ListItemText
+                style={{ marginTop: "3%", color: "#f06292" }}
+                primary="Item Total"
+              />
+              <ListItemSecondaryAction style={{ marginRight: "4%" }}>
+                <span style={{ color: "#f06292", fontSize: "90%" }}>₹112</span>
+              </ListItemSecondaryAction>
+            </ListItem>
+            <ListItem style={{ marginTop: "-4%" }}>
+              <ListItemText
+                style={{ color: "#f06292" }}
+                primary="Advance Charge"
+              />
+              <ListItemSecondaryAction style={{ marginRight: "4%" }}>
+                <span
+                  style={{
+                    color: "#f06292",
+                    fontSize: "90%",
+                  }}
+                >
+                  ₹50
+                </span>
+              </ListItemSecondaryAction>
+            </ListItem>
+            <Divider variant="middle" />
+            <ListItem style={{ marginTop: "-2%" }}>
+              <ListItemText
+                style={{ marginTop: "3%", color: "#f06292" }}
+                primary="Grand Total"
+              />
+              <ListItemSecondaryAction style={{ marginRight: "4%" }}>
+                <span style={{ color: "#f06292", fontSize: "90%" }}>₹162</span>
+              </ListItemSecondaryAction>
+            </ListItem>
+          </List>{" "}
+        </div>
       </MuiThemeProvider>
     );
   }

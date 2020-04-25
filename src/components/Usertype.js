@@ -43,15 +43,17 @@ export class Usertype extends Component {
               You can Choose Own Profile
             </h6>
           </div>
-          <Button
-            variant="outlined"
-            color="secondary"
-            className={classes.button}
-            //fullWidth={true}
-            //size="large"
-          >
-            User
-          </Button>
+          <Link to="/Footeruser" style={{ textDecoration: "none" }}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              className={classes.button}
+              //fullWidth={true}
+              //size="large"
+            >
+              User
+            </Button>
+          </Link>
           <br />
           <Link to="/Restaurantname" style={{ textDecoration: "none" }}>
             <Button

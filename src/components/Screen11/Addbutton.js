@@ -3,6 +3,23 @@ import Button from "@material-ui/core/Button";
 import Increase from "./Increase";
 
 export class Addbutton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 1,
+      show: true,
+      max: 5,
+      min: 0,
+    };
+  }
+  add = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
+
+  ToggleClick = () => {
+    this.setState({ show: !this.state.show });
+  };
   render() {
     return (
       <div>
@@ -21,6 +38,7 @@ export class Addbutton extends Component {
             textJustify: "center",
           }}
           variant="outlined"
+          onClick={this.add}
         >
           <span style={{ marginTop: "-65%" }}> Add</span>
         </Button>
