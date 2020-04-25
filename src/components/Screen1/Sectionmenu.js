@@ -10,6 +10,7 @@ import InboxIcon from "@material-ui/icons/Inbox";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 
 const styles = (theme) => ({
@@ -21,6 +22,11 @@ const styles = (theme) => ({
 
   icon: {
     color: "#ff1744",
+  },
+  button2: {
+    margin: theme.spacing.unit,
+    color: "#c62828",
+    bottom: 0,
   },
 });
 
@@ -78,6 +84,12 @@ class SelectedListItem extends React.Component {
           </ListItem>
         </List>
         <Divider />
+        <Button
+          className={classes.button2}
+          style={{ fontVariant: "normal", fontFamily: "Big Caslon FB" }}
+        >
+          add menu
+        </Button>
       </div>
     );
   }

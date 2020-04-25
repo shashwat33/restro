@@ -6,6 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Sectionmenu from "./Sectionmenu";
+import Button from "@material-ui/core/Button";
 
 function TabContainer(props) {
   return <Typography component="div">{props.children}</Typography>;
@@ -32,6 +33,11 @@ const styles = (theme) => ({
     margin: 0,
     backgroundColor: theme.palette.background.paper,
     fontFamily: "Big Caslon FB",
+  },
+  button2: {
+    margin: theme.spacing.unit,
+    color: "#c62828",
+    bottom: 0,
   },
 });
 
@@ -74,6 +80,12 @@ class SimpleTabs extends React.Component {
             <span style={{ fontFamily: "Big Caslon FB" }}>
               village cafe,shankr nagar raipur phone no. 9304786790.
             </span>
+            <Button
+              className={classes.button2}
+              style={{ fontVariant: "normal", fontFamily: "Big Caslon FB" }}
+            >
+              edit profile
+            </Button>
           </TabContainer1>
         )}
         {value === 1 && (
