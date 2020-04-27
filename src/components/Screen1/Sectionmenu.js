@@ -12,6 +12,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
+import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   root: {
@@ -60,7 +61,9 @@ class SelectedListItem extends React.Component {
             />
             <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
-                <CreateOutlinedIcon className={classes.icon} />
+                <Link to="/addmenu" style={{ textDecoration: "none" }}>
+                  <CreateOutlinedIcon className={classes.icon} />
+                </Link>
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
@@ -78,7 +81,29 @@ class SelectedListItem extends React.Component {
             />
             <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
-                <CreateOutlinedIcon className={classes.icon} />
+                <Link to="/addmenu" style={{ textDecoration: "none" }}>
+                  <CreateOutlinedIcon className={classes.icon} />
+                </Link>
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+          <ListItem
+            button
+            selected={this.state.selectedIndex === 1}
+            onClick={(event) => this.handleListItemClick(event, 1)}
+          >
+            <ListItemIcon>
+              <img src="ff.png" width="60" height="50" />
+            </ListItemIcon>
+            <ListItemText
+              style={{ marginLeft: "15%" }}
+              primary="onion paratha"
+            />
+            <ListItemSecondaryAction>
+              <IconButton aria-label="Delete">
+                <Link to="/addmenu" style={{ textDecoration: "none" }}>
+                  <CreateOutlinedIcon className={classes.icon} />
+                </Link>
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>

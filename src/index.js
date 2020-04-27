@@ -13,6 +13,7 @@ import * as serviceWorker from "./serviceWorker";
 // import Searchbar from "./components/Searchbar";
 // import Firebaselogin from "./components/Firebaselogin";
 // import LoginPage from "./components/Screen4/LoginPage";
+import Menu from "./components/Screen1/Menu";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,7 +26,7 @@ ReactDOM.render(
     {/* <HomeEmpty /> */}
     {/* <Dialougebox /> */}
     {/* <Prac /> */}
-    <App />
+    <Menu />
     {/* <Footer /> */}
   </React.StrictMode>,
   document.getElementById("root")
