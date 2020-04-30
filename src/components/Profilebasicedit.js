@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
+import firebase from "firebase";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -29,6 +30,54 @@ const styles = (theme) => ({
 });
 
 export class Profilebasicedit extends Component {
+  // componentDidMount() {
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     const db = firebase.firestore();
+  //     var docRef = db.collection("Restaurant");
+
+  //     docRef
+  //       .doc(user.uid)
+  //       .get()
+  //       .then(function (doc) {
+  //         console.log("SHASHHHHHHHHHHHHHHHHHHHHHHHHHHHWAAATTTTTTTT");
+  //         console.log(doc.data());
+  //       });
+  //   });
+  // }
+  constructor() {
+    super();
+    this.state = {
+      phonenumber: "",
+      address: "",
+      name: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(evt) {
+    this.setState({ [evt.target.name]: evt.target.value });
+  }
+  handleSubmit(event) {
+    firebase.auth().onAuthStateChanged((user) => {
+      const db = firebase.firestore();
+      console.log("user ", user.uid);
+      // var docRef = db.collection("Restaurant").where("userid", "==", user.uid);
+      // console.log("doc", docRef);
+      db.collection("Restaurant")
+        .where("userid", "==", "27rCFkmF9BVKHvf619AcAWKnLD03")
+        .get()
+        .then((querySnapshot) => {
+          console.log(1, querySnapshot.data());
+          // querySnapshot.ref.update({
+          //   address: this.state.address,
+          //   phonenumber: this.state.phonenumber,
+          //   name: this.state.name,
+          // });
+        })
+        .catch((err) => console.log(2, err));
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -71,6 +120,9 @@ export class Profilebasicedit extends Component {
               className={classes.textField}
               margin="normal"
               variant="outlined"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
               // inputProps={{ style: { borderRadius: "20px" } }}
 
               InputProps={{
@@ -93,6 +145,9 @@ export class Profilebasicedit extends Component {
               className={classes.textField}
               margin="normal"
               variant="outlined"
+              name="phonenumber"
+              value={this.state.phonenumber}
+              onChange={this.handleChange}
               // inputProps={{ style: { borderRadius: "20px" } }}
 
               InputProps={{
@@ -115,6 +170,9 @@ export class Profilebasicedit extends Component {
               className={classes.textField}
               margin="normal"
               variant="outlined"
+              name="address"
+              value={this.state.address}
+              onChange={this.handleChange}
               // inputProps={{ style: { borderRadius: "20px" } }}
 
               InputProps={{
@@ -176,6 +234,10 @@ export class Profilebasicedit extends Component {
             variant="contained"
             color="secondary"
             className={classes.button}
+            onClick={(e) => {
+              e.preventDefault();
+              this.handleSubmit;
+            }}
             style={{
               position: "absolute",
               bottom: "10px",

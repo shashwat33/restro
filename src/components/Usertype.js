@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Restaurantname from "./Restaurantname";
 import { Link } from "react-router-dom";
+import firebase from "firebase";
 
 const styles = (theme) => ({
   button: {
@@ -17,6 +18,27 @@ const styles = (theme) => ({
 });
 
 export class Usertype extends Component {
+  handleClickOpenrestro = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      const db = firebase.firestore();
+
+      var docRef = db.collection("User");
+      docRef.doc(user.uid).update({
+        userType: "restroUser",
+      });
+    });
+  };
+  handleClickOpenUser = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      const db = firebase.firestore();
+
+      var docRef = db.collection("User");
+      docRef.doc(user.uid).update({
+        userType: "user",
+      });
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
@@ -48,6 +70,7 @@ export class Usertype extends Component {
               variant="outlined"
               color="secondary"
               className={classes.button}
+              onClick={this.handleClickOpenUser}
               //fullWidth={true}
               //size="large"
             >
@@ -60,6 +83,7 @@ export class Usertype extends Component {
               variant="contained"
               color="secondary"
               className={classes.button}
+              onClick={this.handleClickOpenrestro}
             >
               Restaurant
             </Button>

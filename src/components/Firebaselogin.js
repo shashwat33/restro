@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import firebase, { database } from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import { Usertype } from "./Usertype";
+import { Redirect } from "react-router-dom";
+
 //import axios from "axios";
 
 firebase.initializeApp({
@@ -31,23 +32,26 @@ class Firebaselogin extends Component {
       var docRef = db.collection("User");
 
       docRef
-        .doc(user.email)
+        .doc(user.uid)
         .get()
         .then(function (doc) {
           console.log("Checking Data");
           console.log(doc);
           if (doc.exists) {
-            docRef.doc(user.email).update({
-              PhotoUrl: user.PhotoUrl,
+            docRef.doc(user.uid).set({
+              Email: user.email,
               Name: user.displayName,
+              PhotoUrl: user.photoURL,
+              uid: user.uid,
             });
             console.log("Document data:", doc.data());
           } else {
-            docRef.doc(user.email).set({
+            docRef.doc(user.uid).set({
               Email: user.email,
               Name: user.displayName,
               // "Phone Number": "1234",
               PhotoUrl: user.photoURL,
+              uid: user.uid,
             });
           }
         })
@@ -64,10 +68,11 @@ class Firebaselogin extends Component {
       <div className="App">
         {this.state.isSignedIn ? (
           <span>
-            <div></div>
+            {/* <div></div>
             <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-            {firebase.auth().currentUser.email}
+            {firebase.auth().currentUser.email} */}
+            <Redirect to="/usertype" />
           </span>
         ) : (
           <StyledFirebaseAuth

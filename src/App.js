@@ -8,12 +8,15 @@ import Footeruser from "./components/Footeruser";
 import Menuitem from "./components/Screen11/Menuitem";
 import UserHome from "./components/Screen7User/UserHome";
 import UserOrder from "./components/Screen8User/UserOrder";
+import LoginPage from "./components/Screen4/LoginPage";
+
 export class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" render={(props) => <Usertype {...props} />} />
+          <Route exact path="/" render={(props) => <LoginPage {...props} />} />
+          <Route path="/usertype" render={(props) => <Usertype {...props} />} />
           <Route
             path="/Restaurantname"
             render={(props) => <Restaurantname {...props} />}
@@ -22,7 +25,6 @@ export class App extends Component {
           <Route
             path="/Profilebasicedit"
             render={(props) => <Profilebasicedit {...props} />}
-
           />
           <Route
             path="/Footeruser"
@@ -35,7 +37,6 @@ export class App extends Component {
             path="/userorder"
             render={(props) => <UserOrder {...props} />}
           />
-
         </div>
       </BrowserRouter>
     );

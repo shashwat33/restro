@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import firebase from "firebase";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -26,6 +27,30 @@ const styles = (theme) => ({
 });
 
 export class Restaurantname extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    firebase.auth().onAuthStateChanged((user) => {
+      const db = firebase.firestore();
+
+      var docRef = db.collection("Restaurant");
+      docRef.doc().set({
+        restroName: this.state.value,
+        userid: user.uid,
+      });
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -69,6 +94,8 @@ export class Restaurantname extends Component {
               className={classes.textField}
               margin="normal"
               variant="outlined"
+              value={this.state.value}
+              onChange={this.handleChange}
               // inputProps={{ style: { borderRadius: "20px" } }}
 
               InputProps={{
@@ -89,6 +116,7 @@ export class Restaurantname extends Component {
                 variant="contained"
                 color="secondary"
                 className={classes.button}
+                onClick={this.handleSubmit}
               >
                 Done
               </Button>
