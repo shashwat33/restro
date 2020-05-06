@@ -8,13 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Sectionmenu from "./Sectionmenu";
 import Button from "@material-ui/core/Button";
 
-function TabContainer(props) {
-  return <Typography component="div">{props.children}</Typography>;
-}
+import { Link } from "react-router-dom";
 
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 function TabContainer1(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -24,6 +19,14 @@ function TabContainer1(props) {
 }
 
 TabContainer1.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+function TabContainer(props) {
+  return <Typography component="div">{props.children}</Typography>;
+}
+
+TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
@@ -55,7 +58,7 @@ class SimpleTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.root} id="scroll">
         <AppBar
           position="static"
           style={{
@@ -77,21 +80,38 @@ class SimpleTabs extends React.Component {
         </AppBar>
         {value === 0 && (
           <TabContainer1 style={{ padding: 7 * 5 }}>
-            <span style={{ fontFamily: "Big Caslon FB" }}>
+            {/* <span style={{ fontFamily: "Big Caslon FB" }}>
               village cafe,shankr nagar raipur phone no. 9304786790.
-            </span>
-            <Button
-              className={classes.button2}
-              style={{ fontVariant: "normal", fontFamily: "Big Caslon FB" }}
-            >
-              edit profile
-            </Button>
+            </span>  */}
+            <condition />
+            <Link to="/Profilebasicedit" style={{ textDecoration: "none" }}>
+              <Button
+                className={classes.button2}
+                style={{
+                  fontVariant: "normal",
+                  fontFamily: "Big Caslon FB",
+                  position: "fixed",
+                  zIndex: "999",
+                  bottom: "50px",
+                  height: "25px",
+                  width: "100%",
+                  left: "0",
+                  backgroundColor: "transparent",
+                  textTransform: "capitalize",
+                  fontSize: "15px",
+                }}
+              >
+                edit profile
+              </Button>
+            </Link>
           </TabContainer1>
         )}
         {value === 1 && (
-          <TabContainer margin="0%">
-            <Sectionmenu />
-          </TabContainer>
+          <div style={{ overflowY: "auto", height: "calc(100vh - 495px)" }}>
+            <TabContainer>
+              <Sectionmenu />
+            </TabContainer>
+          </div>
         )}
         {value === 2 && <TabContainer></TabContainer>}
       </div>

@@ -10,6 +10,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Link } from "react-router-dom";
 
 let theme = createMuiTheme({
   palette: {
@@ -23,10 +24,9 @@ const styles = (theme) => ({
   button: {
     margin: theme.spacing.unit,
     color: "#c62828",
-
     position: "absolute",
     right: "0",
-    top: "33%",
+    top: "34%",
   },
   button2: {
     margin: theme.spacing.unit,
@@ -41,7 +41,7 @@ class Profile extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ width: "100%" }}>
-          <img src="ww.jpg" class="shukla1" />
+          <img src="ww.jpg" class="image1" />
 
           <GridListTileBar
             style={{
@@ -56,16 +56,9 @@ class Profile extends Component {
             actionPosition="left"
           />
           <Button className={classes.button}>edit</Button>
-          <div className="loginedit">
-            {/* <div
-              style={{
-                marginTop: 50,
-                textAlign: "left",
-                marginLeft: 20,
-              }}
-            > */}
+          <div className="loginbox">
             <ListItemText
-              style={{ position: "absolute", left: "15px", top: "15%" }}
+              style={{ margin: "center", marginTop: "13%" }}
               primary="Anju bisen"
               secondary={
                 <React.Fragment>
@@ -77,22 +70,23 @@ class Profile extends Component {
 
             <img src="d.png" class="icon1" />
             <br></br>
-
-            <Button
-              className={classes.button2}
-              font-variant="normal"
-              style={{
-                position: "fixed",
-                zIndex: "999",
-                bottom: "50px",
-                height: "25px",
-                width: "100%",
-                left: "0",
-                backgroundColor: "transparent",
-              }}
-            >
-              edit profile
-            </Button>
+            <Link to="/Profilebasicedit" style={{ textDecoration: "none" }}>
+              <Button
+                className={classes.button2}
+                font-variant="normal"
+                style={{
+                  position: "fixed",
+                  zIndex: "999",
+                  bottom: "50px",
+                  height: "25px",
+                  width: "100%",
+                  left: "0",
+                  backgroundColor: "transparent",
+                }}
+              >
+                edit profile
+              </Button>
+            </Link>
             {/* </div> */}
           </div>
         </div>
