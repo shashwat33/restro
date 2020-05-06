@@ -14,7 +14,7 @@ export class Addbutton extends Component {
   }
   add = (e) => {
     e.preventDefault();
-    this.props.nextStep();
+    // this.props.nextStep();
   };
 
   ToggleClick = () => {

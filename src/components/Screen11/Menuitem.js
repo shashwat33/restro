@@ -21,6 +21,8 @@ import Typography from "@material-ui/core/Typography";
 import Increase from "./Increase";
 import Addbutton from "./Addbutton";
 import { Link } from "react-router-dom";
+import AddRun from "./AddRun";
+import { db, docRefmenu, auth } from "../firebase";
 
 let theme = createMuiTheme({
   palette: {
@@ -48,6 +50,28 @@ const styles = (theme) => ({
 });
 
 class Menuitem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menu: [],
+    };
+  }
+  componentDidMount = () => {
+    auth.onAuthStateChanged((user) => {
+      docRefmenu
+        .get()
+        .then((snapshot) => {
+          const menu = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            menu.push(data);
+          });
+          this.setState({ menu: menu });
+          //console.log(snapshot)
+        })
+        .catch((error) => console.log(error));
+    });
+  };
   state = {
     selectedIndex: 1,
   };
@@ -125,11 +149,34 @@ class Menuitem extends React.Component {
         />
         <div style={{ overflowY: "auto", height: "calc(100vh - 240px)" }}>
           <List component="nav">
-            <ListItem
-              fullWidth={true}
+            {this.state.menu &&
+              this.state.menu.map((menuitem) => (
+                <ListItem
+                  fullWidth={true}
+                  button
+                  selected={this.state.selectedIndex === 1}
+                  onClick={(event) => this.handleListItemClick(event, 1)}
+                >
+                  <ListItemIcon>
+                    <img src={menuitem.PhotoUrl} width="60" height="50" />
+                  </ListItemIcon>
+                  <ListItemText
+                    style={{ marginLeft: "15%" }}
+                    primary={menuitem.foodname}
+                    secondary={menuitem.price}
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton aria-label="Delete">
+                      <AddRun />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+
+            {/* <ListItem
               button
-              selected={this.state.selectedIndex === 1}
-              onClick={(event) => this.handleListItemClick(event, 1)}
+              selected={this.state.selectedIndex === 2}
+              onClick={(event) => this.handleListItemClick(event, 2)}
             >
               <ListItemIcon>
                 <img src="ff.png" width="60" height="50" />
@@ -141,7 +188,7 @@ class Menuitem extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
-                  <Increase />
+                  <AddRun />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
@@ -160,7 +207,7 @@ class Menuitem extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
-                  <Addbutton />
+                  <AddRun />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
@@ -179,7 +226,7 @@ class Menuitem extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
-                  <Addbutton />
+                  <AddRun />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
@@ -198,26 +245,7 @@ class Menuitem extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
-                  <Addbutton />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem
-              button
-              selected={this.state.selectedIndex === 2}
-              onClick={(event) => this.handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <Addbutton />
+                  <AddRun />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
@@ -238,7 +266,7 @@ class Menuitem extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
-                  <Addbutton />
+                  <AddRun />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
@@ -257,10 +285,10 @@ class Menuitem extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton aria-label="Delete">
-                  <Addbutton />
+                  <AddRun />
                 </IconButton>
               </ListItemSecondaryAction>
-            </ListItem>
+            </ListItem> */}
           </List>
         </div>
 

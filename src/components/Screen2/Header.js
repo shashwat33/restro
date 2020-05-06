@@ -5,10 +5,24 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+
+import List8 from "./List8";
+
+let theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#c62828",
+    },
+    secondary: {
+      main: "#c62828",
+    },
+  },
+});
 
 function TabContainer(props) {
   return (
-    <Typography component="div" style={{ padding: 5 * 7 }}>
+    <Typography component="div" style={{ padding: 4 * 3 }}>
       {props.children}
     </Typography>
   );
@@ -40,27 +54,47 @@ class SimpleTabs extends React.Component {
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
-        <AppBar
-          position="static"
-          style={{
-            backgroundColor: "white",
-            color: "black",
-            textAlign: "center",
-            fontWeight: "bold",
-            fontfamily: "Big Caslon FB",
-          }}
-        >
-          <Tabs value={value} onChange={this.handleChange} centered={true}>
-            <Tab label="Active" />
-            <Tab label="Completed" />
-            <Tab label="Cancaled" />
-          </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer></TabContainer>}
-        {value === 1 && <TabContainer></TabContainer>}
-        {value === 2 && <TabContainer></TabContainer>}
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <AppBar
+            position="static"
+            style={{
+              backgroundColor: "white",
+              color: "black",
+              textAlign: "center",
+              fontWeight: "bold",
+              fontfamily: "Big Caslon FB",
+            }}
+          >
+            <Tabs value={value} onChange={this.handleChange} centered={true}>
+              <Tab label="Active" />
+              <Tab label="Completed" />
+              <Tab label="Cancaled" />
+            </Tabs>
+          </AppBar>
+          {value === 0 && (
+            <div style={{ overflowY: "auto", height: "calc(100vh - 200px)" }}>
+              <TabContainer>
+                <List8 />
+              </TabContainer>
+            </div>
+          )}
+          {value === 1 && (
+            <div style={{ overflowY: "auto", height: "calc(100vh - 150px)" }}>
+              <TabContainer>
+                <List8 />
+              </TabContainer>
+            </div>
+          )}
+          {value === 2 && (
+            <div style={{ overflowY: "auto", height: "calc(100vh - 150px)" }}>
+              <TabContainer>
+                <List8 />
+              </TabContainer>
+            </div>
+          )}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
