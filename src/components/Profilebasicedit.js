@@ -236,7 +236,7 @@ export class Profilebasicedit extends Component {
             className={classes.button}
             onClick={(e) => {
               e.preventDefault();
-              this.handleSubmit;
+              this.handleSubmit();
             }}
             style={{
               position: "absolute",
