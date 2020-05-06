@@ -4,6 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { MuiThemeProvider } from "@material-ui/core";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import UserIdentity from "./UserIdentity";
+import { Link } from "react-router-dom";
 
 export default class TopArrow extends Component {
   render() {
@@ -17,14 +18,16 @@ export default class TopArrow extends Component {
             color: "black",
           }}
           actionIcon={
-            <IconButton
-              style={{
-                color: "#ff1744",
-                position: "sticky",
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
+            <Link to="/Footer" style={{ textDecoration: "none" }}>
+              <IconButton
+                style={{
+                  color: "#ff1744",
+                  position: "sticky",
+                }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            </Link>
           }
           actionPosition="left"
         />

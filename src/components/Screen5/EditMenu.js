@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import "./DesignEdit.css";
-import SelectTextBox from "./SelectTextBox";
 import { TopEditMenu } from "./TopEditMenu";
 import { BottomButton } from "./BottomButton";
+import SelectText from "./SelectText";
+import ImageUpload from "./ImageUpload";
 
 export class EditMenu extends Component {
   render() {
     return (
-      <div className="top">
+      <div style={{ marginLeft: "2%", marginRight: "2%" }}>
         <TopEditMenu />
+        {/* <ImageUpload /> */}
+        <SelectText />
 
-        <SelectTextBox />
-
-        <BottomButton />
+        {/* <BottomButton /> */}
       </div>
     );
   }

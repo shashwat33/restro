@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import firebase, { database } from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 import { Redirect } from "react-router-dom";
 import firebase from "./firebase";
 
@@ -27,11 +28,9 @@ class Firebaselogin extends Component {
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ isSignedIn: !!user });
-
       console.log("user", user);
       const db = firebase.firestore();
       var docRef = db.collection("User");
-
       docRef
         .doc(user.uid)
         .get()

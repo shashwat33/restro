@@ -14,6 +14,7 @@ import TextField from "@material-ui/core/TextField";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import IncrementDecrement from "./IncrementDecrement";
+// import AddRun from "./AddRun";
 //import AddRun from './AddRun'
 const theme = createMuiTheme({
   palette: {
@@ -85,6 +86,7 @@ export class ItemDetails extends Component {
               />
               <ListItemSecondaryAction>
                 <IncrementDecrement />
+                {/* <AddRun /> */}
               </ListItemSecondaryAction>
             </ListItem>
             <Divider variant="middle" />

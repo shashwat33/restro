@@ -14,7 +14,7 @@ const theme = createMuiTheme({
 const styles = (theme) => ({
   appBar: {
     top: "auto",
-    bottom: 90,
+    bottom: "15%",
   },
 });
 

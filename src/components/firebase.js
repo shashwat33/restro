@@ -15,11 +15,10 @@ firebase.initializeApp({
 
 export const auth = firebase.auth();
 export const db = firebase.firestore();
+export const docRefUser = db.collection("User");
 export const docRefCategory = db.collection("category");
-export const User = db.collection("User");
+export const docRefrestaurant = db.collection("Restaurant");
 export const docRefmenu = db.collection("menu");
-export const docRefRestaurant = db.collection("Restaurant");
-
-export default firebase;
-
+export const docRefOrder = db.collection("Order");
 export const storage = firebase.storage();
+export default firebase;

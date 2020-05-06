@@ -13,6 +13,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
+=======
+
+>>>>>>> Komal4
 const styles = (theme) => ({
   root: {
     margin: "0",
@@ -41,7 +45,7 @@ class SelectedListItem extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    // console.log(this.props.location.restroName);
     return (
       <div className={classes.root}>
         <List component="nav">

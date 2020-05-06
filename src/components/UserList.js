@@ -15,6 +15,7 @@ import FoodImage from "../Images/FoodImage.jpg";
 import CallIcon from "@material-ui/icons/Call";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
+import { db, docRefrestaurant, auth, docRefmenu } from "./Firebase";
 
 const styles = (theme) => ({
   root: {
@@ -22,7 +23,6 @@ const styles = (theme) => ({
     left: "0",
     backgroundColor: theme.palette.background.paper,
   },
-
   icon: {
     color: "white",
     margin: "0",
@@ -42,7 +42,41 @@ class UserList extends React.Component {
   state = {
     selectedIndex: 1,
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      Restaurant: "",
+      menu: [],
+    };
+  }
+  componentDidMount = () => {
+    auth.onAuthStateChanged((user) => {
+      // var docRef = db.collection("User");
+      // .doc(user.uid)
+      docRefrestaurant.get().then((snapshot) => {
+        const Restaurant = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          Restaurant.push(data);
+        });
+        this.setState({ Restaurant: Restaurant });
+        console.log(snapshot);
+      });
 
+      docRefmenu
+        .get()
+        .then((snapshot) => {
+          const menu = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            menu.push(data);
+          });
+          this.setState({ menu: menu });
+          //console.log(snapshot)
+        })
+        .catch((error) => console.log(error));
+    });
+  };
   handleListItemClick = (event, index) => {
     this.setState({ selectedIndex: index });
   };
@@ -52,35 +86,42 @@ class UserList extends React.Component {
 
     return (
       <div className={classes.root}>
-        <List component="nav">
-          <Link
-            to="/Menuitem"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem
-              fullWidth={true}
-              button
-              selected={this.state.selectedIndex === 0}
-              onClick={(event) => this.handleListItemClick(event, 0)}
-            >
-              <ListItemIcon>
-                <img src={FoodImage} width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "5%" }}
-                primary="Manjushree"
-                secondary="pure veg"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <Avatar className={classes.avatar}>
-                    <CallIcon className={classes.icon} />
-                  </Avatar>
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          </Link>
-          <Divider />
+        {this.state.Restaurant &&
+          this.state.Restaurant.map((Restaurants) => {
+            return (
+              <List component="nav">
+                <Link
+                  to={{
+                    pathname: "/Menuitem",
+                    state: { Restaurants: Restaurants, menu: this.state.menu },
+                  }}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItem
+                    fullWidth={true}
+                    button
+                    selected={this.state.selectedIndex === 0}
+                    onClick={(event) => this.handleListItemClick(event, 0)}
+                  >
+                    <ListItemIcon>
+                      <img src={FoodImage} width="60" height="50" />
+                    </ListItemIcon>
+                    <ListItemText
+                      style={{ marginLeft: "5%" }}
+                      primary={Restaurants.restroName}
+                      secondary={Restaurants.category}
+                    />
+                    <ListItemSecondaryAction>
+                      <IconButton aria-label="Delete">
+                        <Avatar className={classes.avatar}>
+                          <CallIcon className={classes.icon} />
+                        </Avatar>
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                </Link>
+
+                {/* <Divider />
           <ListItem
             fullWidth={true}
             button
@@ -287,8 +328,10 @@ class UserList extends React.Component {
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
-          <Divider />
-        </List>
+          <Divider /> */}
+              </List>
+            );
+          })}
       </div>
     );
   }

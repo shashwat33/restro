@@ -18,11 +18,18 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Increase from "./Increase";
-import Addbutton from "./Addbutton";
 import { Link } from "react-router-dom";
+
 import AddRun from "./AddRun";
-import { db, docRefmenu, auth } from "../firebase";
+import {
+  db,
+  storage,
+  docRefCategory,
+  docRefmenu,
+  docRefUser,
+  auth,
+  docRefrestaurant,
+} from "../Firebase";
 
 let theme = createMuiTheme({
   palette: {
@@ -54,11 +61,26 @@ class Menuitem extends React.Component {
     super(props);
     this.state = {
       menu: [],
+      Restaurant: [],
+      url: "",
+      countervalue: 0,
+      image: null,
+      selectedMenu: this.state.foodname,
     };
+    this.updatevalue = this.updatevalue.bind(this);
+  }
+  updatevalue() {
+    this.setState({ countervalue: this.state.countervalue + 1 });
   }
   componentDidMount = () => {
+    var recievedRestaurant = this.props.location.state.Restaurants;
+    this.setState({ Restaurant: recievedRestaurant });
+    var recievedMenu = this.props.location.state.menu;
+    this.setState({ menu: recievedMenu });
     auth.onAuthStateChanged((user) => {
+      //{Restaurants.userid && Restaurants.restroName } ?
       docRefmenu
+        .where("restroName", "==", this.state.Restaurant.restroName)
         .get()
         .then((snapshot) => {
           const menu = [];
@@ -79,10 +101,18 @@ class Menuitem extends React.Component {
   handleListItemClick = (event, index) => {
     this.setState({ selectedIndex: index });
   };
-
+  handleListItemClicklist = (e, index1) => {
+    this.setState({ selectedMenu: index1 });
+  };
   render() {
     const { classes } = this.props;
-
+    {
+      console.log("sssssssssssssssssssssssssssssssss");
+      console.log(this.state.Restaurant);
+      console.log(this.state.menu);
+      console.log(this.state.Restaurant.restroName);
+      console.log(this.state.clicks);
+    }
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classes.root} style={{ height: "60%" }}>
@@ -102,7 +132,9 @@ class Menuitem extends React.Component {
           />
           <br />
           <br />
-
+          {/* {this.props.Restaurants &&
+            this.props.Restaurants.map((Restaurants) => {
+              return ( */}
           <List component="nav">
             <ListItem
               fullWidth={true}
@@ -112,7 +144,7 @@ class Menuitem extends React.Component {
             >
               <ListItemIcon>
                 <img
-                  src="gg.png"
+                  src={"gg.png"}
                   width="70"
                   height="70"
                   style={{ borderRadius: "15%" }}
@@ -120,11 +152,13 @@ class Menuitem extends React.Component {
               </ListItemIcon>
               <ListItemText
                 style={{ marginLeft: "15%" }}
-                primary="onion paratha"
+                primary={this.state.Restaurant.restroName}
                 secondary={
                   <React.Fragment>
-                    <Typography variant="body2">raipur chowk</Typography>
-                    {" rs 112"}
+                    <Typography variant="body2">
+                      {this.state.Restaurant.address}
+                    </Typography>
+                    {this.state.Restaurant.Category}
                   </React.Fragment>
                 }
               />
@@ -135,6 +169,8 @@ class Menuitem extends React.Component {
               </ListItemSecondaryAction>
             </ListItem>
           </List>
+          {/* );
+            })} */}
           <Divider />
         </div>
 
@@ -154,8 +190,10 @@ class Menuitem extends React.Component {
                 <ListItem
                   fullWidth={true}
                   button
-                  selected={this.state.selectedIndex === 1}
-                  onClick={(event) => this.handleListItemClick(event, 1)}
+                  selected={this.state.selectedMenu === menuitem.foodname}
+                  onClick={(e) =>
+                    this.handleListItemClicklist(e, menuitem.foodname)
+                  }
                 >
                   <ListItemIcon>
                     <img src={menuitem.PhotoUrl} width="60" height="50" />
@@ -172,123 +210,6 @@ class Menuitem extends React.Component {
                   </ListItemSecondaryAction>
                 </ListItem>
               ))}
-
-            {/* <ListItem
-              button
-              selected={this.state.selectedIndex === 2}
-              onClick={(event) => this.handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <AddRun />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem
-              button
-              selected={this.state.selectedIndex === 2}
-              onClick={(event) => this.handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <AddRun />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem
-              button
-              selected={this.state.selectedIndex === 2}
-              onClick={(event) => this.handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <AddRun />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem
-              button
-              selected={this.state.selectedIndex === 2}
-              onClick={(event) => this.handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <AddRun />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-
-            <ListItem
-              fullWidth={true}
-              button
-              selected={this.state.selectedIndex === 3}
-              onClick={(event) => this.handleListItemClick(event, 3)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <AddRun />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-            <ListItem
-              button
-              selected={this.state.selectedIndex === 4}
-              onClick={(event) => this.handleListItemClick(event, 4)}
-            >
-              <ListItemIcon>
-                <img src="ff.png" width="60" height="50" />
-              </ListItemIcon>
-              <ListItemText
-                style={{ marginLeft: "15%" }}
-                primary="onion paratha"
-                secondary="₹112"
-              />
-              <ListItemSecondaryAction>
-                <IconButton aria-label="Delete">
-                  <AddRun />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem> */}
           </List>
         </div>
 
@@ -312,7 +233,7 @@ class Menuitem extends React.Component {
                 fontWeight: "normal",
               }}
             >
-              1 item rs 112
+              1 item rs 112 {this.state.countervalue}
             </Typography>
           }
           actionIcon={
