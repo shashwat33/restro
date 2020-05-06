@@ -8,6 +8,7 @@ import img from "./img.jpg";
 import log from "./log.jpg";
 import ListItemText from "@material-ui/core/ListItemText";
 import Fab from "@material-ui/core/Fab";
+import FirebaseLogin from "../Firebaselogin";
 const styles = (theme) => ({
   margin: {
     marginTop: "3%",
@@ -54,14 +55,14 @@ export class LoginPage extends Component {
               secondary=" Login to your account"
             />
             <Grid container justify="center">
-              {/* <FirebaseLogin
+              <FirebaseLogin
                 style={{
                   width: "43%",
                   position: "absolute",
                   marginTop: "10%",
                   borderRadius: "30%",
                 }}
-              /> */}
+              />
             </Grid>
           </div>
         </div>

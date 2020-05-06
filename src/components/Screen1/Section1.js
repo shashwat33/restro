@@ -7,6 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Sectionmenu from "./Sectionmenu";
 import Button from "@material-ui/core/Button";
+import { db, auth, docRefrestaurant } from "../Firebase";
 
 function TabContainer(props) {
   return <Typography component="div">{props.children}</Typography>;
@@ -17,7 +18,7 @@ TabContainer.propTypes = {
 };
 function TabContainer1(props) {
   return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
+    <Typography component="div" style={{ padding: 5 * 2 }}>
       {props.children}
     </Typography>
   );
@@ -26,7 +27,14 @@ function TabContainer1(props) {
 TabContainer1.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
+const RestroUserContext = React.createContext();
+function Restro(props) {
+  return (
+    <RestroUserContext.Provider
+      value={this.state.RestroUser.restroName}
+    ></RestroUserContext.Provider>
+  );
+}
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -42,6 +50,30 @@ const styles = (theme) => ({
 });
 
 class SimpleTabs extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      RestroUser: "",
+    };
+  }
+  componentDidMount = () => {
+    auth.onAuthStateChanged((user) => {
+      // var docRef = db.collection("User");
+      // .doc(user.uid)
+      docRefrestaurant
+        .get()
+        .then((snapshot) => {
+          const RestroUser = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            RestroUser.push(data);
+          });
+          this.setState({ RestroUser: RestroUser });
+          console.log(snapshot);
+        })
+        .catch((error) => console.log(error));
+    });
+  };
   state = {
     value: 0,
   };
@@ -65,21 +97,76 @@ class SimpleTabs extends React.Component {
           }}
         >
           <Tabs
+            defaultActiveKey="Basic"
             value={value}
             onChange={this.handleChange}
             centered={true}
             style={{ fontFamily: "Big Caslon FB" }}
           >
-            <Tab label="Basic" />
+            <Tab label="Basic" key="Basic" />
             <Tab label="Menu" />
             <Tab label="Table" />
           </Tabs>
         </AppBar>
         {value === 0 && (
           <TabContainer1 style={{ padding: 7 * 5 }}>
-            <span style={{ fontFamily: "Big Caslon FB" }}>
-              village cafe,shankr nagar raipur phone no. 9304786790.
-            </span>
+            {this.state.RestroUser &&
+              this.state.RestroUser.map((RestroUsers) => {
+                return (
+                  <div
+                    style={{
+                      marginTop: "0",
+                      marginBottom: "0",
+                      textAlign: "left",
+                      fontFamily: "Big Caslon FB",
+                    }}
+                  >
+                    <span style={{ fontFamily: "Big Caslon FB" }}>
+                      {RestroUsers.restroName ? (
+                        RestroUsers.restroName
+                      ) : (
+                        <p>Name</p>
+                      )}
+                      {RestroUsers.category ? (
+                        RestroUsers.Name
+                      ) : (
+                        <p style={{ marginTop: "0", marginBottom: "0" }}>
+                          Category
+                        </p>
+                      )}
+                      {RestroUsers.hours ? (
+                        RestroUsers.Name
+                      ) : (
+                        <p style={{ marginTop: "0", marginBottom: "0" }}>
+                          Hours
+                        </p>
+                      )}
+                      {RestroUsers.Adress ? (
+                        RestroUsers.Name
+                      ) : (
+                        <p style={{ marginTop: "0" }}>Adress</p>
+                      )}
+                      {RestroUsers.restroName &&
+                      RestroUsers.category &&
+                      RestroUsers.hours &&
+                      RestroUsers.Adress ? null : (
+                        <p
+                          style={{
+                            color: "#E91E63",
+                            flexGrow: "1",
+                            textAlign: "center",
+                            // fontWeight: "initial",
+                            fontFamily: "Big Caslon FB",
+                            marginBottom: "20%",
+                          }}
+                        >
+                          Oops.... Your profile looks incomplete....
+                        </p>
+                      )}
+                    </span>
+                  </div>
+                );
+              })}
             <Button
               className={classes.button2}
               style={{ fontVariant: "normal", fontFamily: "Big Caslon FB" }}
@@ -89,9 +176,11 @@ class SimpleTabs extends React.Component {
           </TabContainer1>
         )}
         {value === 1 && (
-          <TabContainer margin="0%">
-            <Sectionmenu />
-          </TabContainer>
+          <div style={{ overflowY: "auto", height: "calc(100vh - 495px)" }}>
+            <TabContainer margin="0%">
+              <Sectionmenu />
+            </TabContainer>
+          </div>
         )}
         {value === 2 && <TabContainer></TabContainer>}
       </div>

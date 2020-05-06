@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase, { database } from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import { Usertype } from "./Usertype";
+// import { Usertype } from "./Usertype";
 //import axios from "axios";
 
 firebase.initializeApp({
@@ -25,29 +25,30 @@ class Firebaselogin extends Component {
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ isSignedIn: !!user });
-
       console.log("user", user);
       const db = firebase.firestore();
       var docRef = db.collection("User");
-
       docRef
-        .doc(user.email)
+        .doc(user.uid)
         .get()
         .then(function (doc) {
           console.log("Checking Data");
           console.log(doc);
           if (doc.exists) {
-            docRef.doc(user.email).update({
-              PhotoUrl: user.PhotoUrl,
+            docRef.doc(user.uid).set({
+              Email: user.email,
               Name: user.displayName,
+              PhotoUrl: user.photoURL,
+              uid: user.uid,
             });
             console.log("Document data:", doc.data());
           } else {
-            docRef.doc(user.email).set({
+            docRef.doc(user.uid).set({
               Email: user.email,
               Name: user.displayName,
               // "Phone Number": "1234",
               PhotoUrl: user.photoURL,
+              uid: user.uid,
             });
           }
         })

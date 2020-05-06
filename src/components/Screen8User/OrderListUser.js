@@ -34,8 +34,15 @@ export class OrderListUser extends Component {
     const { classes } = this.props;
     return (
       // <div /*className={classes.Container}*/>
-      <div style={{ overflowY: "auto", height: "calc(100vh - 130px)" }}>
-        <Paper elevation={3} style={{ marginRight: "6%", marginTop: "3%" }}>
+      <div
+        style={{
+          overflowY: "auto",
+          height: "calc(100vh - 130px)",
+          //alignContent: "center",
+          marginRight: "4%",
+        }}
+      >
+        <Paper elevation={3}>
           <List style={{ fontSize: "100%" }} button>
             <ListItem style={{ marginLeft: "-3%", marginTop: "-3%" }}>
               <img
@@ -154,7 +161,7 @@ export class OrderListUser extends Component {
             </ListItem>
           </List>
         </Paper>
-        <Paper elevation={3} style={{ marginRight: "6%", marginTop: "3%" }}>
+        <Paper elevation={3} style={{ marginTop: "3%" }}>
           <List style={{ fontSize: "100%" }} button>
             <ListItem style={{ marginLeft: "-3%", marginTop: "-3%" }}>
               <img
@@ -273,7 +280,7 @@ export class OrderListUser extends Component {
             </ListItem>
           </List>
         </Paper>
-        <Paper elevation={3} style={{ marginRight: "6%", marginTop: "3%" }}>
+        <Paper elevation={3} style={{ marginTop: "3%" }}>
           <List style={{ fontSize: "100%" }} button>
             <ListItem style={{ marginLeft: "-3%", marginTop: "-3%" }}>
               <img

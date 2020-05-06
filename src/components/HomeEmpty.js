@@ -13,7 +13,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import User from "./Screen6/User.jpg";
+import { Link } from "react-router-dom";
+import { db, auth, docRefUser, docRefOrder } from "./Firebase";
 // import image from "..images/image.png";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -42,8 +45,36 @@ const styles = {
 };
 
 export class HomeEmpty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      User: "",
+    };
+  }
+  componentDidMount = () => {
+    auth.onAuthStateChanged((user) => {
+      // var docRef = db.collection("User");
+      // .doc(user.uid)
+      docRefOrder
+        .get()
+        .then((snapshot) => {
+          const Orders = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            Orders.push(data);
+          });
+          this.setState({ Orders: Orders });
+          console.log(snapshot);
+        })
+        .catch((error) => console.log(error));
+    });
+  };
   state = {
     value: 0,
+    selectedIndex: 1,
+  };
+  handleListItemClick = (event, index) => {
+    this.setState({ selectedIndex: index });
   };
 
   handleChange = (event, value) => {
@@ -68,53 +99,77 @@ export class HomeEmpty extends Component {
         </span>
         <div style={{ textAlign: "center", marginTop: "50%" }}>
           <img src="image.png" alt="" />
-          <div>
-            <span
-              /*style={{
-                position: "absolute",
-                marginLeft: "auto",
-                marginRight: "auto",
-                left: "0",
-                right: "0",
-                bottom: "35%",
-                color: "#E91E63",
-              }}*/
-              style={{ color: "#E91E63", fontFamily: "Big Caslon FB" }}
-            >
-              Oops...There are no request{" "}
-            </span>
-          </div>
-          <div>
-            {/* <List>
-              <ListItem>
-                <Avatar
-                  style={{
-                    position: "absolute",
-                    padding: "2%",
-                    alignContent: "left",
-                  }}
-                >
-                  <img src={User} style={{ position: "absolute" }} />
-                </Avatar>
-                <ListItemText
-                  style={{ marginLeft: "22%", marginTop: "3%" }}
-                  primary="Anju Bisen"
-                  secondary={
-                    <React.Fragment>
-                      {" Table no. 21"}
-                      <Typography
-                        style={{ color: "#E91E63", fontSize: "100%" }}
-                      >
-                        05:00-07:00 25 April
-                      </Typography>
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-            </List> */}
-          </div>
-        </div>
-        {/* <MuiThemeProvider theme={theme}>
+          {this.state.Orders &&
+            this.state.Orders.map((orderslist) => (
+              <Fragment>
+                {orderslist.name ? (
+                  <div>
+                    <Link
+                      to="/orderdetaillist"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      {" "}
+                      <List>
+                        <ListItem
+                          button
+                          selected={this.state.selectedIndex === 0}
+                          onClick={(event) =>
+                            this.handleListItemClick(event, 0)
+                          }
+                        >
+                          <Avatar
+                            style={{
+                              position: "absolute",
+                              padding: "2%",
+                              alignContent: "left",
+                            }}
+                          >
+                            <img src={User} style={{ position: "absolute" }} />
+                          </Avatar>
+                          <ListItemText
+                            style={{
+                              marginLeft: "22%",
+                              marginTop: "3%",
+                              //  color: "#E91E63",
+                            }}
+                            primary="Anju Bisen"
+                            secondary={
+                              <React.Fragment>
+                                {" Table no. 21"}
+                                <Typography
+                                  style={{ color: "#E91E63", fontSize: "100%" }}
+                                >
+                                  05:00-07:00 25 April
+                                </Typography>
+                              </React.Fragment>
+                            }
+                          />
+                        </ListItem>
+                      </List>
+                    </Link>
+                  </div>
+                ) : (
+                  <div>
+                    <span
+                      style={{
+                        position: "absolute",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        left: "0",
+                        right: "0",
+                        bottom: "35%",
+                        color: "#E91E63",
+                      }}
+                      style={{ color: "#E91E63", fontFamily: "Big Caslon FB" }}
+                    >
+                      Oops...There are no request{" "}
+                    </span>
+                  </div>
+                )}
+              </Fragment>
+            ))}
+
+          {/* <MuiThemeProvider theme={theme}>
           <BottomNavigation
             value={value}
             onChange={this.handleChange}
@@ -129,6 +184,7 @@ export class HomeEmpty extends Component {
             />
           </BottomNavigation>
         </MuiThemeProvider>  */}
+        </div>
       </div>
     );
   }

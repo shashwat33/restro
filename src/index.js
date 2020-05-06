@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import EditMenu from "./components/Screen5/EditMenu";
 // import Userexplore from "./components/Userexplore";
 // import Footer from "./components/Footer";
 // import Usertype from "./components/Usertype";
@@ -12,9 +13,11 @@ import * as serviceWorker from "./serviceWorker";
 // import Dialougebox from "./components/Dialougebox";
 // import Searchbar from "./components/Searchbar";
 // import Firebaselogin from "./components/Firebaselogin";
+// import { LoginPage } from "./components/Screen4/LoginPage";
 // import LoginPage from "./components/Screen4/LoginPage";
 // import Userexplore from "./components/Userexplore";
 // import Footeruser from "./components/Footeruser";
+// import EditMenu from "./components/Screen5/EditMenu";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,7 +31,12 @@ ReactDOM.render(
     {/* <Dialougebox /> */}
     {/* <Prac /> */}
     {/* <Footeruser /> */}
+    {/* <UserHome /> */}
     <App />
+    {/* <UserIdentity /> */}
+    {/* <Select /> */}
+    {/* <SelectText /> */}
+    {/* <EditMenu /> */}
     {/* <Footer /> */}
   </React.StrictMode>,
   document.getElementById("root")
