@@ -12,27 +12,13 @@ firebase.initializeApp({
   messagingSenderId: "787634875792",
   appId: "1:787634875792:web:57ccd208c52a90a22dd715",
 });
-// firebase.initializeApp({
-//   apiKey: "AIzaSyBLyplo3FrU_IrCozlgW2KOOjDcLWR9QRY",
-//   authDomain: "storageimage-9b092.firebaseapp.com",
-//   databaseURL: "https://storageimage-9b092.firebaseio.com",
-//   projectId: "storageimage-9b092",
-//   storageBucket: "storageimage-9b092.appspot.com",
-//   messagingSenderId: "883237042053",
-//   appId: "1:883237042053:web:35d880d0b4046b9bf776ec",
-//   measurementId: "G-4XEPFGG1K8",
-// });
 
 export const auth = firebase.auth();
 export const db = firebase.firestore();
+export const docRefUser = db.collection("User");
 export const docRefCategory = db.collection("category");
-export const User = db.collection("User");
+export const docRefrestaurant = db.collection("Restaurant");
 export const docRefmenu = db.collection("menu");
-export const docRefRestaurant = db.collection("Restaurant");
-
-export default firebase;
-
-// Initialize Firebase
-//firebase.initializeApp(firebaseConfig);
+export const docRefOrder = db.collection("Order");
 export const storage = firebase.storage();
-// export { storage, firebase as default };
+export default firebase;

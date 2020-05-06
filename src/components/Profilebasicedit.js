@@ -89,16 +89,16 @@ export class Profilebasicedit extends Component {
           }}
           titlePosition="top"
           actionIcon={
-            // <Link to="" style={{ textDecoration: "none" }}>
-            <IconButton
-              style={{
-                color: "#ff1744",
-                position: "sticky",
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
-            // </Link>
+            <Link to="Footer" style={{ textDecoration: "none" }}>
+              <IconButton
+                style={{
+                  color: "#ff1744",
+                  position: "sticky",
+                }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            </Link>
           }
           actionPosition="left"
         />
@@ -230,25 +230,27 @@ export class Profilebasicedit extends Component {
               }}
             />
           </div>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            onClick={(e) => {
-              e.preventDefault();
-              this.handleSubmit;
-            }}
-            style={{
-              position: "absolute",
-              bottom: "10px",
-              marginLeft: "auto",
-              marginRight: "auto",
-              left: "0",
-              right: "0",
-            }}
-          >
-            Done
-          </Button>
+          <Link to="Footer" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={(e) => {
+                e.preventDefault();
+                this.handleSubmit;
+              }}
+              style={{
+                position: "absolute",
+                bottom: "10px",
+                marginLeft: "auto",
+                marginRight: "auto",
+                left: "0",
+                right: "0",
+              }}
+            >
+              Done
+            </Button>
+          </Link>
         </MuiThemeProvider>
       </div>
     );
