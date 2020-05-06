@@ -12,7 +12,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
-
+import { Link } from "react-router-dom";
 const styles = (theme) => ({
   root: {
     margin: "0",
@@ -59,11 +59,53 @@ class SelectedListItem extends React.Component {
               primary="onion paratha"
             />
             <ListItemSecondaryAction>
+              <Link to="/Addmenu" style={{ textDecoration: "none" }}>
+                <IconButton aria-label="Delete">
+                  <CreateOutlinedIcon className={classes.icon} />
+                </IconButton>
+              </Link>
+            </ListItemSecondaryAction>
+          </ListItem>
+          <ListItem
+            fullWidth={true}
+            button
+            selected={this.state.selectedIndex === 0}
+            onClick={(event) => this.handleListItemClick(event, 0)}
+          >
+            <ListItemIcon>
+              <img src="ff.png" width="60" height="50" />
+            </ListItemIcon>
+            <ListItemText
+              style={{ marginLeft: "15%", fontFamily: "Big Caslon FB" }}
+              primary="onion paratha"
+            />
+            <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
                 <CreateOutlinedIcon className={classes.icon} />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
+
+          <ListItem
+            fullWidth={true}
+            button
+            selected={this.state.selectedIndex === 0}
+            onClick={(event) => this.handleListItemClick(event, 0)}
+          >
+            <ListItemIcon>
+              <img src="ff.png" width="60" height="50" />
+            </ListItemIcon>
+            <ListItemText
+              style={{ marginLeft: "15%", fontFamily: "Big Caslon FB" }}
+              primary="onion paratha"
+            />
+            <ListItemSecondaryAction>
+              <IconButton aria-label="Delete">
+                <CreateOutlinedIcon className={classes.icon} />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+
           <ListItem
             button
             selected={this.state.selectedIndex === 1}
@@ -84,12 +126,25 @@ class SelectedListItem extends React.Component {
           </ListItem>
         </List>
         <Divider />
-        <Button
-          className={classes.button2}
-          style={{ fontVariant: "normal", fontFamily: "Big Caslon FB" }}
-        >
-          add menu
-        </Button>
+        <Link to="/EditMenu" style={{ textDecoration: "none" }}>
+          <Button
+            className={classes.button2}
+            style={{
+              fontVariant: "normal",
+              fontFamily: "Big Caslon FB",
+              position: "fixed",
+              zIndex: "999",
+              bottom: "38px",
+              textTransform: "capitalize",
+              fontSize: "15px",
+              width: "100%",
+              left: "0",
+              backgroundColor: "transparent",
+            }}
+          >
+            add menu
+          </Button>
+        </Link>
       </div>
     );
   }
