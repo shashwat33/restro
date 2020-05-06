@@ -10,13 +10,18 @@ import Addmenu from "./components/Screen3/Addmenu";
 
 import UserHome from "./components/Screen7User/UserHome";
 import UserOrder from "./components/Screen8User/UserOrder";
+
+import LoginPage from "./components/Screen4/LoginPage";
+
 import EditMenu from "./components/Screen5/EditMenu";
+
 export class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/" render={(props) => <Usertype {...props} />} />
+          <Route exact path="/" render={(props) => <LoginPage {...props} />} />
+          <Route path="/usertype" render={(props) => <Usertype {...props} />} />
           <Route
             path="/Restaurantname"
             render={(props) => <Restaurantname {...props} />}
@@ -37,7 +42,10 @@ export class App extends Component {
             path="/userorder"
             render={(props) => <UserOrder {...props} />}
           />
+
+
           <Route path="/EditMenu" render={(props) => <EditMenu {...props} />} />
+
         </div>
       </BrowserRouter>
     );
