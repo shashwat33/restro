@@ -15,6 +15,7 @@ import * as serviceWorker from "./serviceWorker";
 // import LoginPage from "./components/Screen4/LoginPage";
 // import Userexplore from "./components/Userexplore";
 // import Footeruser from "./components/Footeruser";
+import ImageUpload from "./components/Screen1/ImageUpload";
 
 ReactDOM.render(
   <React.StrictMode>
