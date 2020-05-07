@@ -9,6 +9,7 @@ import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfie
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+
 // import image from "..images/image.png";
 const theme = createMuiTheme({
   palette: {
@@ -62,7 +63,7 @@ class Userexplore extends Component {
           <div
             style={{
               marginTop: "10px",
-              height: "calc(100vh - 205px)",
+              //  height: "calc(100vh - 205px)",
               position: "fixed",
               zIndex: "999",
               width: "100%",

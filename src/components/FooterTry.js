@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
@@ -9,12 +9,12 @@ import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfie
 import { MuiThemeProvider, createMuiTheme, MenuItem } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Profilebasicedit from "./Profilebasicedit";
+import { NavLink } from "react-router-dom";
 import HomeEmpty from "./HomeEmpty";
 import Dialougebox from "./Dialougebox";
 // import image from "..images/image.png";
 import Order from "./Screen2/Order";
 import Menu from "./Screen1/Menu";
-import { db, auth, docRefUser } from "./Firebase";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -51,24 +51,6 @@ TabContainer.propTypes = {
 };
 
 export class Footer extends Component {
-  componentDidMount = () => {
-    auth.onAuthStateChanged((user) => {
-      // var docRef = db.collection("User");
-      // .doc(user.uid)
-      docRefUser
-        .get()
-        .then((snapshot) => {
-          const User = [];
-          snapshot.forEach((doc) => {
-            const data = doc.data();
-            User.push(data);
-          });
-          this.setState({ User: User });
-          console.log(snapshot);
-        })
-        .catch((error) => console.log(error));
-    });
-  };
   state = {
     value: 0,
   };
@@ -82,49 +64,41 @@ export class Footer extends Component {
     const { value } = this.state;
     return (
       <div>
-        {this.state.User &&
-          this.state.User.map((users) => (
-            <Fragment>
-              {users.Name &&
-              users.category &&
-              users.hours &&
-              users.phonenumber &&
-              users.Adress ? null : (
-                <Dialougebox />
-              )}
-            </Fragment>
-          ))}
-
+        <Dialougebox />
         <MuiThemeProvider theme={theme}>
-          <BottomNavigation
-            value={value}
-            onChange={this.handleChange}
-            showLabels
-            className={classes.root}
-          >
-            <BottomNavigationAction label="Home" icon={<HomeOutlinedIcon />} />
-            <BottomNavigationAction label="Order" icon={<ListOutlinedIcon />} />
-            <BottomNavigationAction
-              label="Profile"
-              icon={<SentimentSatisfiedOutlinedIcon />}
-            />
+          <BottomNavigation value={value} showLabels className={classes.root}>
+            <NavLink
+              exact
+              activeClassName="active"
+              to="/homeempty"
+              style={{ textDecoration: "none" }}
+            >
+              <BottomNavigationAction
+                label="Home"
+                icon={<HomeOutlinedIcon />}
+              />
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              to="/order"
+              style={{ textDecoration: "none" }}
+            >
+              <BottomNavigationAction
+                label="Order"
+                icon={<ListOutlinedIcon />}
+              />
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              to="/menu"
+              style={{ textDecoration: "none" }}
+            >
+              <BottomNavigationAction
+                label="Profile"
+                icon={<SentimentSatisfiedOutlinedIcon />}
+              />
+            </NavLink>
           </BottomNavigation>
-          {value === 0 && (
-            <TabContainer>
-              {" "}
-              <HomeEmpty />{" "}
-            </TabContainer>
-          )}
-          {value === 1 && (
-            <TabContainer>
-              <Order />
-            </TabContainer>
-          )}
-          {value === 2 && (
-            <TabContainer>
-              <Menu />
-            </TabContainer>
-          )}
         </MuiThemeProvider>
       </div>
     );

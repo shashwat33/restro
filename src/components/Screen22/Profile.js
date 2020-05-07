@@ -26,7 +26,9 @@ const styles = (theme) => ({
     color: "#c62828",
     position: "absolute",
     right: "0",
-    top: "34%",
+    top: "33%",
+    textTransform: "capitalize",
+    fontSize: "15px",
   },
   button2: {
     margin: theme.spacing.unit,
@@ -82,6 +84,8 @@ class Profile extends Component {
                   width: "100%",
                   left: "0",
                   backgroundColor: "transparent",
+                  textTransform: "capitalize",
+                  fontSize: "15px",
                 }}
               >
                 edit profile

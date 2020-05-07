@@ -49,7 +49,6 @@ export class BottomPay extends Component {
             <Link to="/userorder" style={{ textDecoration: "none" }}>
               <IconButton style={{ color: "#f06292" }}>
                 <span style={{ marginRight: "20%", fontSize: "70%" }}>Pay</span>
-
                 <ArrowForwardIcon style={{ marginRight: "20%" }} />
               </IconButton>
             </Link>
