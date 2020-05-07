@@ -8,6 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
+import "firebase/firestore";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -59,24 +60,48 @@ export class Profilebasicedit extends Component {
   }
   handleSubmit(event) {
     firebase.auth().onAuthStateChanged((user) => {
+      // const db = firebase.firestore();
+      // console.log("user ", user.uid);
+      // var docRef= db.collection("Restaurant").where("userid", "==", user.uid);
+      
+      // // console.log("doc", docRef);
+      // docRef
+      //   .set(
+      //     {
+      //       address: this.state.address,
+      //      phonenumber: this.state.phonenumber,
+      //       name: this.state.name,
+      //     })
       const db = firebase.firestore();
-      console.log("user ", user.uid);
-      // var docRef = db.collection("Restaurant").where("userid", "==", user.uid);
-      // console.log("doc", docRef);
-      db.collection("Restaurant")
-        .where("userid", "==", "27rCFkmF9BVKHvf619AcAWKnLD03")
-        .get()
-        .then((querySnapshot) => {
-          console.log(1, querySnapshot.data());
-          // querySnapshot.ref.update({
-          //   address: this.state.address,
-          //   phonenumber: this.state.phonenumber,
-          //   name: this.state.name,
-          // });
-        })
-        .catch((err) => console.log(2, err));
+
+      let collectionRef = db.collection('Restaurant');
+
+// collectionRef.where('userid', '==', user.uid).get().then(querySnapshot => {
+//   querySnapshot.forEach(documentSnapshot => {
+//     console.log(`Found document at ${documentSnapshot.ref.path}`);
+collectionRef.where('userid', '==', user.uid).get().then(e=>e.docs[0].ref.set(
+  {
+    address: this.state.address,
+    phonenumber: this.state.phonenumber,
+     name: this.state.name,
+   },{merge:true}))
+
+
+  
+
+        
+        // console.log(refs());
+          // snapshot.refs().set({
+          //  address: this.state.address,
+          //    phonenumber: this.state.phonenumber,
+          //    name: this.state.name,
+          
+          // })
+        // .catch((err) => console.log(2, err));
     });
-  }
+  
+}
+
 
   render() {
     const { classes } = this.props;
@@ -230,6 +255,8 @@ export class Profilebasicedit extends Component {
               }}
             />
           </div>
+
+
           <Link to="Footer" style={{ textDecoration: "none" }}>
             <Button
               variant="contained"
@@ -251,6 +278,7 @@ export class Profilebasicedit extends Component {
               Done
             </Button>
           </Link>
+
         </MuiThemeProvider>
       </div>
     );

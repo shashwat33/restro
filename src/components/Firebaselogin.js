@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import firebase from "./Firebase";
+
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import { Redirect } from "react-router-dom";
+import firebase from "./firebase";
+
 
 class Firebaselogin extends Component {
   state = { isSignedIn: false };
