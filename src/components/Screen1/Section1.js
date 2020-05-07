@@ -57,6 +57,7 @@ class SimpleTabs extends React.Component {
       // var docRef = db.collection("User");
       // .doc(user.uid)
       docRefrestaurant
+        .where("userid", "==", user.uid)
         .get()
         .then((snapshot) => {
           const RestroUser = [];

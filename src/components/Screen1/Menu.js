@@ -9,8 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import ImageUpload from "./ImageUpload";
-import { storage, docRefRestaurant } from "../firebase";
-import firebase from "../firebase";
+import { storage, docRefrestaurant, docRefUser, auth } from "../Firebase";
+import firebase from "../Firebase";
 
 let theme = createMuiTheme({
   palette: {
@@ -25,13 +25,18 @@ const styles = (theme) => ({
     margin: theme.spacing.unit,
     color: "#c62828",
     fontFamily: "Big Caslon FB",
-
     position: "absolute",
     left: "85%",
     top: "33%",
   },
+  buttonlogout: {
+    margin: theme.spacing.unit,
+    color: "#c62828",
+    fontFamily: "Big Caslon FB",
+    left: "72%",
+    borderColor: "#c62828",
+  },
 });
-
 
 class Menu extends Component {
   constructor(props) {
@@ -41,6 +46,7 @@ class Menu extends Component {
       url: "",
       progress: 0,
       Urlpic: "",
+      UserData: [],
     };
   }
   handleUpdate = (e) => {
@@ -76,7 +82,7 @@ class Menu extends Component {
 
             console.log("jhsgc");
             firebase.auth().onAuthStateChanged((user) => {
-              docRefRestaurant.doc("image").set({
+              docRefrestaurant.doc("image").set({
                 backgroundpicurl: url,
               });
             });
@@ -85,31 +91,24 @@ class Menu extends Component {
     );
   };
   componentWillMount = () => {
-    //
-    // docRefRestaurant
-    //   .doc("images")
-    //   .get()
-    //   .then(function (querySnapshot) {
-    //     querySnapshot.forEach((doc) => {
-    //       console.log("gkjbbbbbbbbbbbbbxcvbnm,.");
-    //       // wholeData.push(doc.data());
-    //     });
-    //   })
-    var query = docRefRestaurant.doc("image");
-    query.get().then((querySnapshot) => {
-      const url = [];
-      const data = querySnapshot.data();
-      url.push(data);
-      console.log(url);
-      this.setState({ Urlpic: url });
+    firebase.auth().onAuthStateChanged((user) => {
+      var queryUser = docRefUser.doc(user.uid);
+      queryUser.get().then((querySnapshot) => {
+        const UserData = [];
+        const data = querySnapshot.data();
+        UserData.push(data);
+        console.log(UserData);
+        this.setState({ UserData: UserData });
+      });
+      var query = docRefrestaurant.doc("image");
+      query.get().then((querySnapshot) => {
+        const url = [];
+        const data = querySnapshot.data();
+        url.push(data);
+        console.log(url);
+        this.setState({ Urlpic: url });
+      });
     });
-    // .then((snapshot) => {
-    //   snapshot.forEach(() => {
-    //     console.log("gkjbbbbbbbbbbbbbxcvbnm,.");
-    //   });
-
-    //  this.setState({ Urlpic: Backgroundpic });
-    //console.log(this.state.Urlpic);
   };
 
   render() {
@@ -129,10 +128,10 @@ class Menu extends Component {
       <MuiThemeProvider theme={theme}>
         <div style={{ width: "100%" }}>
           <div id="scroll">
-            <img
-              src={this.state.Urlpic.backgroundpicurl || "ww.jpg"}
-              class="image"
-            />
+            {this.state.Urlpic &&
+              this.state.Urlpic.map((pic) => (
+                <img src={pic.backgroundpicurl || "ww.jpg"} class="image" />
+              ))}
 
             <GridListTileBar
               style={{
@@ -146,6 +145,13 @@ class Menu extends Component {
               }
               actionPosition="left"
             />
+            <Button
+              onClick={() => firebase.auth().signOut()}
+              className={classes.buttonlogout}
+              variant="outlined"
+            >
+              Sign out
+            </Button>
             <label for="files" class="btn" className={classes.button}>
               Edit
             </label>
@@ -159,17 +165,20 @@ class Menu extends Component {
             />
             {/* <Button className={classes.button}>edit</Button>  */}
           </div>
+          {/* {this.state.UserData &&
+            this.state.UserData.map((userdata) => ( */}
           <div className="loginbox">
             <div style={{ marginTop: 34, fontFamily: "Big Caslon FB" }}>
-              <h4>anju bisen</h4>
-
-              <img src="d.png" class="icon" />
+              <h4>{auth.currentUser.displayName}</h4>
+              <h4 style={{ marginTop: "-5%" }}> {auth.currentUser.email}</h4>
+              <img src={auth.currentUser.photoURL || "d.png"} class="icon" />
               <br></br>
               <div className="tab">
                 <Section1 />
               </div>
             </div>
           </div>
+          {/* ))} */}
         </div>
       </MuiThemeProvider>
     );

@@ -10,9 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputBase from "@material-ui/core/InputBase";
-import { db, docRefCategory, docRefmenu, storage } from "../Firebase";
-import ImageUpload from "./ImageUpload";
-import firebase from "../Firebase";
+import { db, docRefCategory, docRefmenu, storage, auth } from "../Firebase";
 import AppBar from "@material-ui/core/AppBar";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
@@ -185,79 +183,71 @@ export class SelectText extends Component {
       }
     );
   };
-  handleUpload = (e) => {
-    // e.preventDefault();
-    // console.log(e);
-    // const { image } = this.state;
-    // const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    // uploadTask.on(
-    //   "state_changed",
-    //   (snapshot) => {
-    //     // progress function ...
-    //     const progress = Math.round(
-    //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    //     );
-    //     this.setState({ progress });
-    //   },
-    //   (error) => {
-    //     // Error function ...
-    //     console.log(error);
-    //   },
-    //   () => {
-    //     // complete function ...
-    //     storage
-    //       .ref("images")
-    //       .child(image.name)
-    //       .getDownloadURL()
-    //       .then((url) => {
-    //         this.setState({ url });
-    //         console.log(url);
-    //         // const { Urlpic } = this.state;
-    //         this.setState({ Urlpic: url });
-    //         console.log("jhsgc");
-    //       });
-    //   }
-    // );
-  };
-  componentWillMount = () => {
-    //   var query = docRefCategory.doc("123");
-    //   query.get().then((querySnapshot) => {
-    //     const category = [];
-    //     const data = querySnapshot.data();
-    //     category.push(data);
-    //     console.log(category);
-    //   });
-    // };
-    var query = docRefCategory.doc("123");
-    query.get().then((querySnapshot) => {
-      const category = [];
-      const data = querySnapshot.data();
-      category.push(data);
-      console.log(category);
-    });
-  };
-  //let docs = querySnapshot.docs;
-  //     if (querySnapshot.empty) {
-  //       console.log("No documents found.");
-  //     } else {
-  //       console.log(("Document found at path": docs));
-  //     }
-  //   });
+  // handleUpload = (e) => {
+  //   // e.preventDefault();
+  //   // console.log(e);
+  //   // const { image } = this.state;
+  //   // const uploadTask = storage.ref(`images/${image.name}`).put(image);
+  //   // uploadTask.on(
+  //   //   "state_changed",
+  //   //   (snapshot) => {
+  //   //     // progress function ...
+  //   //     const progress = Math.round(
+  //   //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //   //     );
+  //   //     this.setState({ progress });
+  //   //   },
+  //   //   (error) => {
+  //   //     // Error function ...
+  //   //     console.log(error);
+  //   //   },
+  //   //   () => {
+  //   //     // complete function ...
+  //   //     storage
+  //   //       .ref("images")
+  //   //       .child(image.name)
+  //   //       .getDownloadURL()
+  //   //       .then((url) => {
+  //   //         this.setState({ url });
+  //   //         console.log(url);
+  //   //         // const { Urlpic } = this.state;
+  //   //         this.setState({ Urlpic: url });
+  //   //         console.log("jhsgc");
+  //   //       });
+  //   //   }
+  //   // );
   // };
   // componentWillMount = () => {
-  //   docRefCategory
-  //     .get()
-  //     .then((snapshot) => {
-  //       const category = [];
-  //       snapshot.forEach((doc) => {
-  //         const data = doc.data();
-  //         category.push(data);
-  //       });
-  //       this.setState({ category: category });
-  //       //console.log(snapshot)
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+  // //   var query = docRefCategory.doc("123");
+  // //   query.get().then((querySnapshot) => {
+  // //     const category = [];
+  // //     const data = querySnapshot.data();
+  // //     category.push(data);
+  // //     console.log(category);
+  // //   });
+  // // };
+  // //let docs = querySnapshot.docs;
+  // //     if (querySnapshot.empty) {
+  // //       console.log("No documents found.");
+  // //     } else {
+  // //       console.log(("Document found at path": docs));
+  // //     }
+  // //   });
+  // // };
+  componentWillMount = () => {
+    docRefCategory
+      .get()
+      .then((snapshot) => {
+        const category = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          category.push(data);
+        });
+        this.setState({ category: category });
+        //console.log(snapshot)
+      })
+      .catch((error) => console.log(error));
+  };
 
   componentDidMount() {
     this.setState({
@@ -273,14 +263,15 @@ export class SelectText extends Component {
     // );
     // this.setState({ Image: Image.preview });
     // console.log(this.state);
-    docRefmenu.doc().set({
-      Category: this.state.Category,
-      foodname: this.state.Name,
-      price: this.state.Price,
-      PhotoUrl: this.state.Urlpic,
-      restroName: "this.props,",
-
-      //userId: ""
+    auth.onAuthStateChanged((user) => {
+      docRefmenu.doc().set({
+        Category: this.state.Category,
+        foodname: this.state.Name,
+        price: this.state.Price,
+        PhotoUrl: this.state.Urlpic,
+        // restroName: "this.props,",
+        userid: user.uid,
+      });
     });
   };
   handleChange = (event) => {

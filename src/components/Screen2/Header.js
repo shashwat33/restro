@@ -6,8 +6,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-
+import Listcancle from "./Listcancle";
 import List8 from "./List8";
+import ListCpmtd from "./ListCpmtd";
 
 let theme = createMuiTheme({
   palette: {
@@ -73,23 +74,23 @@ class SimpleTabs extends React.Component {
             </Tabs>
           </AppBar>
           {value === 0 && (
-            <div style={{ overflowY: "auto", height: "calc(100vh - 200px)" }}>
+            <div style={{ overflowY: "auto", height: "calc(100vh - 240px)" }}>
               <TabContainer>
                 <List8 />
               </TabContainer>
             </div>
           )}
           {value === 1 && (
-            <div style={{ overflowY: "auto", height: "calc(100vh - 150px)" }}>
+            <div style={{ overflowY: "auto", height: "calc(100vh - 240px)" }}>
               <TabContainer>
-                <List8 />
+                <Listcancle />
               </TabContainer>
             </div>
           )}
           {value === 2 && (
-            <div style={{ overflowY: "auto", height: "calc(100vh - 150px)" }}>
+            <div style={{ overflowY: "auto", height: "calc(100vh - 240px)" }}>
               <TabContainer>
-                <List8 />
+                <ListCpmtd />
               </TabContainer>
             </div>
           )}

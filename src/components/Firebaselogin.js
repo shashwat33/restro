@@ -1,20 +1,9 @@
 import React, { Component } from "react";
-import firebase, { database } from "firebase";
+import firebase from "./Firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import { Redirect } from "react-router-dom";
 
-//import axios from "axios";
-
-firebase.initializeApp({
-  apiKey: "AIzaSyA5DJuByaacL4FrIXpCLKfYLLFH6wvAlDI",
-  authDomain: "restro-3e0a1.firebaseapp.com",
-  databaseURL: "https://restro-3e0a1.firebaseio.com",
-  projectId: "restro-3e0a1",
-  storageBucket: "restro-3e0a1.appspot.com",
-  messagingSenderId: "787634875792",
-  appId: "1:787634875792:web:57ccd208c52a90a22dd715",
-});
 class Firebaselogin extends Component {
   state = { isSignedIn: false };
   uiConfig = {

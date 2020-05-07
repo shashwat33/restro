@@ -30,7 +30,7 @@ const styles = (theme) => ({
   },
 });
 
-class List8 extends Component {
+class ListCpmtd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +45,7 @@ class List8 extends Component {
   componentDidMount = () => {
     auth.onAuthStateChanged((user) => {
       db.collection("Order")
-        .where("status", "==", "active")
+        .where("status", "==", "completed")
         .get()
         .then((snapshot) => {
           const User = [];
@@ -136,7 +136,7 @@ class List8 extends Component {
                           }}
                           // autoFocus
                         >
-                          Active order
+                          Canceled order
                         </Button>
                       </Grid>
                     </Paper>
@@ -150,8 +150,8 @@ class List8 extends Component {
   }
 }
 
-List8.propTypes = {
+ListCpmtd.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(List8);
+export default withStyles(styles)(ListCpmtd);
