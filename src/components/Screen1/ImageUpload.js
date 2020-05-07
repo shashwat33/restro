@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { storage } from "../firebase";
+import { storage } from "../Firebase";
 
 class ImageUpload extends Component {
   constructor(props) {

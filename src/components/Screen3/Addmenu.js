@@ -12,8 +12,8 @@ import Select from "@material-ui/core/Select";
 import ReactDOM from "react-dom";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputBase from "@material-ui/core/InputBase";
-import { db, docRefCategory, docRefmenu, auth } from "../firebase";
-import firebase from "../firebase";
+import { db, docRefCategory, docRefmenu, auth } from "../Firebase";
+import firebase from "../Firebase";
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -102,18 +102,35 @@ export class Profilebasicedit extends Component {
       category: [],
       name: "",
       price: "",
+      menu1: [],
     };
   }
   handleChange = (evt) => {
     this.setState({ [evt.target.name]: evt.target.value });
   };
   handleSubmit = (event) => {
-    console.log("anu");
-    firebase.auth().onAuthStateChanged((user) => {
-      docRefmenu.doc().set({
-        name: this.state.name,
-        price: this.state.price,
-      });
+    auth.onAuthStateChanged((user) => {
+      console.log("anu");
+      var recievedMenu = this.props.location.state.menu;
+      this.setState({ menu1: recievedMenu });
+      console.log("anuuuuuuuu");
+      console.log(this.state.menu1);
+
+      docRefmenu
+        .where("foodname", "==", this.state.menu1.foodname)
+        .get()
+        .then((snapshot) => {
+          const menu = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            menu.push(data);
+            console.log(data);
+          });
+
+          // this.setState({ menu: menu });
+          //console.log(snapshot)
+        })
+        .catch((error) => console.log(error));
     });
   };
 
@@ -154,16 +171,16 @@ export class Profilebasicedit extends Component {
             }}
             titlePosition="top"
             actionIcon={
-              // <Link to="" style={{ textDecoration: "none" }}>
-              <IconButton
-                style={{
-                  color: "#ff1744",
-                  position: "sticky",
-                }}
-              >
-                <ArrowBackIcon />
-              </IconButton>
-              // </Link>
+              <Link to="/Footer" style={{ textDecoration: "none" }}>
+                <IconButton
+                  style={{
+                    color: "#ff1744",
+                    position: "sticky",
+                  }}
+                >
+                  <ArrowBackIcon />
+                </IconButton>
+              </Link>
             }
             actionPosition="left"
           />
@@ -261,22 +278,24 @@ export class Profilebasicedit extends Component {
               }}
             />
             <img src="ff.png" style={{ margin: "10%" }} />
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={this.handleSubmit}
-              className={classes.button}
-              style={{
-                position: "absolute",
-                bottom: "30px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                left: "0",
-                right: "0",
-              }}
-            >
-              Done
-            </Button>
+            <Link to="/Footer" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.handleSubmit}
+                className={classes.button}
+                style={{
+                  position: "absolute",
+                  bottom: "30px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  left: "0",
+                  right: "0",
+                }}
+              >
+                Done
+              </Button>
+            </Link>
           </div>
         </MuiThemeProvider>
       </div>

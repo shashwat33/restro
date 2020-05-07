@@ -19,7 +19,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-
 import AddRun from "./AddRun";
 import {
   db,
@@ -63,15 +62,35 @@ class Menuitem extends React.Component {
       menu: [],
       Restaurant: [],
       url: "",
-      countervalue: 0,
+      counter: 0,
       image: null,
       selectedMenu: this.state.foodname,
+      show: true,
     };
-    this.updatevalue = this.updatevalue.bind(this);
   }
-  updatevalue() {
-    this.setState({ countervalue: this.state.countervalue + 1 });
-  }
+
+  //adding menus
+  IncrementItem = () => {
+    if (this.state.counter > 20) {
+    } else {
+      this.setState({ counter: this.state.counter + 1 });
+    }
+  };
+  //removing menu item selected
+  DecreaseItem = (e) => {
+    if (this.state.counter <= 0) {
+      e.preventDefault();
+    } else {
+      this.setState({ counter: this.state.counter - 1 });
+    }
+  };
+  ToggleClick = () => {
+    this.setState({ show: !this.state.show });
+  };
+  // emptycounter() {
+  //   this.setState({ counter: 0 });
+  // }
+
   componentDidMount = () => {
     var recievedRestaurant = this.props.location.state.Restaurants;
     this.setState({ Restaurant: recievedRestaurant });
@@ -88,11 +107,16 @@ class Menuitem extends React.Component {
             const data = doc.data();
             menu.push(data);
           });
+
           this.setState({ menu: menu });
           //console.log(snapshot)
         })
         .catch((error) => console.log(error));
     });
+    // docRefOrder.doc().set({
+    //   quantity: this.state.menuitem.foodname
+    //   foodname: this.state.Name,
+    //  )}
   };
   state = {
     selectedIndex: 1,
@@ -205,7 +229,93 @@ class Menuitem extends React.Component {
                   />
                   <ListItemSecondaryAction>
                     <IconButton aria-label="Delete">
-                      <AddRun />
+                      {/* <AddRun
+                        updatequantity={this.updatecounter}
+                        updatedecreasequantity={this.updatedecreasecounter}
+                        emptyquantity={this.emptycounter}
+                      /> */}
+                      {this.state.counter == 0 ? (
+                        <Button
+                          style={{
+                            position: "absolute",
+                            height: "16px",
+                            minWidth: "0%",
+                            width: "200%",
+                            borderRadius: "1%",
+                            right: "2%",
+                            borderColor: "#f06292",
+                            color: "#f06292",
+                            textTransform: "capitalize",
+                            textAlign: "center",
+                            textJustify: "center",
+                          }}
+                          variant="outlined"
+                          onClick={this.IncrementItem}
+                          key={menuitem.price}
+                        >
+                          <span style={{ marginTop: "-65%" }}> Add</span>
+                        </Button>
+                      ) : (
+                        <div
+                          key={menuitem.price}
+                          style={{
+                            position: "absolute",
+                            height: "16px",
+                            right: "15%",
+                            minWidth: "0%",
+                            width: "180%",
+                            display: "flex",
+                            //   borderRadius: "1%",
+                            borderColor: "#f06292",
+                            border: "1px solid #f06292",
+                            color: "#f06292",
+
+                            //   padding: "1px",
+                          }}
+                        >
+                          <Button
+                            size="small"
+                            color="primary"
+                            style={{
+                              borderRadius: "1%",
+                              minHeight: "5px",
+                              minWidth: "0px",
+
+                              height: "5%",
+                              borderColor: "#f06292",
+                              color: "#f06292",
+                              marginTop: "-16%",
+                            }}
+                            onClick={this.DecreaseItem}
+                          >
+                            -
+                          </Button>
+
+                          {this.state.show ? (
+                            <h6 style={{ marginTop: "-2%" }}>
+                              {this.state.counter}
+                            </h6>
+                          ) : (
+                            ""
+                          )}
+
+                          <Button
+                            size="small"
+                            color="primary"
+                            style={{
+                              minHeight: "0px",
+                              minWidth: "0px",
+                              right: "0%",
+                              borderColor: "#f06292",
+                              color: "#f06292",
+                              marginTop: "-14%",
+                            }}
+                            onClick={this.IncrementItem}
+                          >
+                            +
+                          </Button>
+                        </div>
+                      )}
                     </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
@@ -233,7 +343,7 @@ class Menuitem extends React.Component {
                 fontWeight: "normal",
               }}
             >
-              1 item rs 112 {this.state.countervalue}
+              1 item rs 112 {this.state.counter}
             </Typography>
           }
           actionIcon={

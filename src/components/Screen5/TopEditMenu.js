@@ -3,7 +3,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
 import { MuiThemeProvider } from "@material-ui/core";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-
+import { Link } from "react-router-dom";
 export class TopEditMenu extends Component {
   render() {
     return (
@@ -16,17 +16,20 @@ export class TopEditMenu extends Component {
             color: "black",
           }}
           actionIcon={
-            <IconButton
-              style={{
-                color: "#ff7043",
-                position: "sticky",
-              }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
+            <Link to="/Footer" style={{ textDecoration: "none" }}>
+              <IconButton
+                style={{
+                  color: "#ff7043",
+                  position: "sticky",
+                }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+            </Link>
           }
           actionPosition="left"
         />
+
         <GridListTileBar
           style={{
             backgroundColor: "transparent",

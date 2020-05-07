@@ -6,13 +6,9 @@ import "./Design.css";
 import Grid from "@material-ui/core/Grid";
 import img from "./img.jpg";
 import ListItemText from "@material-ui/core/ListItemText";
-<<<<<<< HEAD
+import Fab from "@material-ui/core/Fab";
 import Firebaselogin from "../Firebaselogin";
 
-=======
-import Fab from "@material-ui/core/Fab";
-import FirebaseLogin from "../Firebaselogin";
->>>>>>> Komal4
 const styles = (theme) => ({
   margin: {
     marginTop: "3%",
@@ -59,11 +55,7 @@ export class LoginPage extends Component {
               secondary=" Login to your account"
             />
             <Grid container justify="center">
-<<<<<<< HEAD
               <Firebaselogin
-=======
-              <FirebaseLogin
->>>>>>> Komal4
                 style={{
                   width: "43%",
                   position: "absolute",

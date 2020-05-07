@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+// import AddIcon from "@material-ui/icons/Add";
+// import RemoveIcon from "@material-ui/icons/Remove";
 // import PropTypes from "prop-types";
 // import { withStyles } from "@material-ui/core/styles";
 
@@ -25,6 +25,7 @@ export class AddRun extends Component {
   IncrementDecrementButton = () => {
     const { step } = this.state;
     this.setState({ step: step + 1 });
+    this.props.updatequantity();
   };
 
   IncrementItem = () => {
@@ -33,6 +34,7 @@ export class AddRun extends Component {
       this.setState({
         quantity: this.state.quantity + 1,
       });
+      this.props.updatequantity();
     }
   };
 
@@ -40,8 +42,10 @@ export class AddRun extends Component {
     if (this.state.quantity <= 1) {
       e.preventDefault();
       this.PrevAddButton();
+      this.props.emptyquantity();
     } else {
       this.setState({ quantity: this.state.quantity - 1 });
+      this.props.updatedecreasequantity();
     }
   };
 

@@ -264,7 +264,7 @@ collectionRef.where('userid', '==', user.uid).get().then(e=>e.docs[0].ref.set(
               className={classes.button}
               onClick={(e) => {
                 e.preventDefault();
-                this.handleSubmit;
+                this.handleSubmit();
               }}
               style={{
                 position: "absolute",
